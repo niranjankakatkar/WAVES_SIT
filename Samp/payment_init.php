@@ -49,8 +49,8 @@ if(!empty($request->createCheckoutSession)){
                 'quantity' => 1 
             ]], 
             'mode' => 'payment', 
-            'success_url' => 'http://localhost/WAVES/Samp/payment-success.php?checkout_session_id={CHECKOUT_SESSION_ID}', 
-            'cancel_url' => 'http://localhost/WAVES/Samp/payment-cancel.php', 
+            'success_url' => 'http://localhost/WAVES/PAYMENT/?checkout_session_id={CHECKOUT_SESSION_ID}', 
+            'cancel_url' => 'http://localhost/WAVES/PAYMENT/?flag=1', 
         ]); 
     } catch(Exception $e) {  
         $api_error = $e->getMessage();  

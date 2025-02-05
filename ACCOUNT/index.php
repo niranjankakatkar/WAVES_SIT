@@ -319,15 +319,16 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
                                         </span>
                                     </div>
 
-                                    <div class="order-contain">
+                                    <div class="order-contain row" >
+                                        
                                     <?php
                                     $token=$_SESSION['tokenID'];
-                                    $sql = "SELECT * FROM order_master where  user_key='$token'";
+                                    $sql = "SELECT * FROM order_master where  user_key='$token' ORDER BY id DESC";
                                             $result = mysqli_query($conn, $sql);
                                             while ($row = mysqli_fetch_assoc($result)) {
                                                
                                                 ?>
-                                        <div class="order-box dashboard-bg-box">
+                                        <div class="order-box dashboard-bg-box col-4">
                                             <div class="order-container">
                                                 <div class="order-icon">
                                                     <i data-feather="box"></i>
@@ -335,8 +336,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
 
                                                 <div class="order-detail" onclick="window.location.href='orderDetails.php?id=<?=$row['id']?>'">
                                                     <h4><?=$row['order_id']?><span>Delevered</span></h4>
-                                                    <h6 class="text-content">Gouda parmesan caerphilly mozzarella
-                                                        cottage cheese cauliflower cheese taleggio gouda.</h6>
+                                                    <h6 class="text-content">Invoice: <?=$row['grand_total']?><br>
+                                                Status: <?=$row['status']?></h6><br>
                                                         <b>Order Details</b>
                                                 </div>
                                             </div>
@@ -347,6 +348,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
                                         <?php
                                             }
                                             ?>
+                                           
                                     </div>
                                 </div>
                             </div>

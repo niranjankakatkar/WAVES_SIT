@@ -5,8 +5,6 @@
 
 $payment_id = $statusMsg = ''; 
 $status = 'error'; 
-
-$oid=$_SESSION['order_id'];
  
 // Check whether stripe checkout session is not empty 
 if(!empty($_GET['checkout_session_id'])){ 
@@ -95,11 +93,6 @@ if(!empty($_GET['checkout_session_id'])){
                         if($insert){ 
                             $payment_id = $stmt->insert_id; 
                         } 
-
-                        
-                        $sql_="update order_master set tran_id='$transactionID',stripe_checkout_session_id='$checkout_session_id' where order_id='$oid'";
-                        if($conn->query($sql_))
-                        {}
                     } 
                      
                     $status = 'success'; 
@@ -144,41 +137,8 @@ $grandtotal=0;
                 <div class="col-12">
                     <div class="breadcrumb-contain breadcrumb-order">
                         <div class="order-box">
-
-                        <?php
-                                    if($_GET['flag']==1){
-                                            ?>
-                                              <div class="order-image">
-                                              <div class="checkmark">
-                                                        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
-                                                            width="150px" height="150px" viewBox="0 0 128 128" enable-background="new 0 0 100 100" xml:space="preserve">
-                                                        <g>
-                                                            <g>
-                                                                <path fill="#B0BEC5" d="M64,0C28.656,0,0,28.656,0,64s28.656,64,64,64s64-28.656,64-64S99.344,0,64,0z M64,120
-                                                                    C33.125,120,8,94.875,8,64S33.125,8,64,8s56,25.125,56,56S94.875,120,64,120z"/>
-                                                            </g>
-                                                        </g>
-                                                        <g>
-                                                            <g>
-                                                                <path fill="#F44336" d="M75.313,64l16.969-16.969c3.125-3.125,3.125-8.195,0-11.313c-3.117-3.125-8.188-3.125-11.313,0L64,52.688
-                                                                    L47.031,35.719c-3.125-3.125-8.195-3.125-11.313,0c-3.125,3.117-3.125,8.188,0,11.313L52.688,64L35.719,80.969
-                                                                    c-3.125,3.125-3.125,8.195,0,11.313c3.117,3.125,8.188,3.125,11.313,0L64,75.313l16.969,16.969c3.125,3.125,8.195,3.125,11.313,0
-                                                                    c3.125-3.117,3.125-8.188,0-11.313L75.313,64z"/>
-                                                            </g>
-                                                        </g>
-                                                        </svg>
-                                                        </div>
-                                                        </div>
-
-                                                        <div class="order-contain">
-                                                            <h3 class="theme-color">Order Cancel</h3>
-                                                          </div>
-                                            <?php
-                                    }else{
-                                    ?>
                             <div class="order-image">
                                 <div class="checkmark">
-                                   
                                     <svg class="star" height="19" viewBox="0 0 19 19" width="19"
                                         xmlns="http://www.w3.org/2000/svg">
                                         <path
@@ -227,18 +187,14 @@ $grandtotal=0;
                                             d="M107.332 72.938c-1.798 5.557 4.564 15.334 1.21 19.96-3.387 4.674-14.646 1.605-19.298 5.003-4.61 3.368-5.163 15.074-10.695 16.878-5.344 1.743-12.628-7.35-18.545-7.35-5.922 0-13.206 9.088-18.543 7.345-5.538-1.804-6.09-13.515-10.696-16.877-4.657-3.398-15.91-.334-19.297-5.002-3.356-4.627 3.006-14.404 1.208-19.962C10.93 67.576 0 63.442 0 57.5c0-5.943 10.93-10.076 12.668-15.438 1.798-5.557-4.564-15.334-1.21-19.96 3.387-4.674 14.646-1.605 19.298-5.003C35.366 13.73 35.92 2.025 41.45.22c5.344-1.743 12.628 7.35 18.545 7.35 5.922 0 13.206-9.088 18.543-7.345 5.538 1.804 6.09 13.515 10.696 16.877 4.657 3.398 15.91.334 19.297 5.002 3.356 4.627-3.006 14.404-1.208 19.962C109.07 47.424 120 51.562 120 57.5c0 5.943-10.93 10.076-12.668 15.438z">
                                         </path>
                                     </svg>
-                                
                                 </div>
                             </div>
 
                             <div class="order-contain">
                                 <h3 class="theme-color">Order Success</h3>
                                 <h5 class="text-content">Payment Is Successfully And Your Order Is On The Way</h5>
-                                <h6>Transaction ID: <?=givedata($conn,"order_master","order_id",$oid,"transactionID")?></h6>
+                                <h6>Transaction ID: 1708031724431131</h6>
                             </div>
-                            <?php
-                                    }
-                                    ?>
                         </div>
                     </div>
                 </div>

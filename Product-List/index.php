@@ -264,10 +264,26 @@ $fl=0;
                                         </a>
 
                                         <div class="product-header-top">
-                                                            <button class="btn wishlist-button close_button">
-                                                            <i class="fa-regular fa-heart"></i>
-                                                            <i class="fa-solid fa-heart" style="color:#c50909"></i>
-                                                            </button>
+                                        <?php
+                                        
+                                         $avlKey=givedataMulti($conn,"wishlist"," product_key='$row[key_]' AND token_key='$_SESSION[guesst_login_KEY]'","id");
+                                         if($avlKey!=""){
+                                            ?>
+                                                <button class="btn wishlist-button close_button" value="1" id="wishlist_icon_<?=$row['key_']?>" onclick="wishlistClick('<?=$row['key_']?>')">
+                                                    <i  class="fa-solid fa-heart" style="color:#c50909"></i>
+                                                </button>
+                                            <?php
+                                         }else{
+                                            ?>
+                                                <button class="btn wishlist-button close_button"  value="0" id="wishlist_icon_<?=$row['key_']?>" onclick="wishlistClick('<?=$row['key_']?>')">
+                                                    <i  class="fa-regular fa-heart"></i>
+                                                   </button>
+                                            <?php
+                                         }
+                                        
+                                        ?>
+                                        
+                                        
                                                         </div>
 
 
@@ -368,6 +384,46 @@ $fl=0;
 <?php include '../inner_footer.php'; ?>
 
 <script>
+
+    function wishlistClick(id){
+        const toggleIcon = document.getElementById("wishlist_icon_"+id);
+        
+       
+       if (toggleIcon.value === "0") {
+            // Show the password
+            toggleIcon.innerHTML =' <i  class="fa-solid fa-heart" style="color:#c50909"></i>' ;
+            wishlist_SUBMIT(id);
+           
+        } else {
+          
+            toggleIcon.innerHTML =' <i  class="fa-regular fa-heart" ></i>' ;
+            wishlist_SUBMIT(id);
+        //    toggleIcon.classList.remove("fa-regular","fa-heart");
+          //  toggleIcon.classList.add("fa-solid","fa-heart");
+        }
+    }
+
+    function wishlist_SUBMIT(id){
+        $.ajax({
+            type: "POST",
+            url: "add_to_wishlist.php",
+            data: ({ pid: id}), // Serialize form data
+            success: function (data) {
+                console.log('my message' + data);
+              //  let mydata = data.split("__AJAX-");
+               // var word = "" + mydata[1];
+               
+               // document.getElementById("pills-tab").innerHTML =mydata[1] ;
+                
+
+               
+            },
+            error: function (data) {
+                alert("Error occurred while submitting the form");
+            }
+        });
+
+    }
 
     function serach_cat(){
         var search = document.getElementById("search").value;
