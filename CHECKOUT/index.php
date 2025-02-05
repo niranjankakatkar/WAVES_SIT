@@ -1,5 +1,7 @@
 <?php include '../niru_collection.php';
 
+
+ 
 if($_SERVER['REQUEST_METHOD'] == 'POST')
 {
 	
@@ -13,7 +15,7 @@ $grandtotal=0;
 
 ?> 
 <?php include '../inner_header.php';?> 
-
+<script src="https://js.stripe.com/v3/"></script>
     <!-- Breadcrumb Section Start -->
     <section class="breadcrumb-section pt-0">
         <div class="container-fluid-lg">
@@ -327,16 +329,13 @@ $grandtotal=0;
                             </ul>
                         </div>
 
-                        <button onclick="place_ORDER()"  class="btn theme-bg-color text-white btn-md w-100 mt-4 fw-bold">Place Order</button>
-                        <script async
-  src="https://js.stripe.com/v3/buy-button.js">
-</script>
 
-<stripe-buy-button
-  buy-button-id="buy_btn_1QjN6GKSUpY1mQU36495ocmT"
-  publishable-key="pk_test_51QjMjkKSUpY1mQU3ropHpaFYBwGr5cGUwrP4qoAVPZH0WNF86EuK7FYiBUCjAJLYhRWylnbkyMkhKsTnFpWoU51w00Gvjmue7D"
->
-</stripe-buy-button>
+                     
+
+                        <button onclick="place_ORDER()" id="payButton" class="btn theme-bg-color text-white btn-md w-100 mt-4 fw-bold">
+                        <div class="spinner hidden" id="spinner"></div>
+                        <span id="buttonText">Pay Now</span></button>
+                      
                     </div>
                 </div>
             </div>
@@ -349,6 +348,68 @@ $grandtotal=0;
      <?php include '../inner_footer.php';?> 
 
      <script>
+
+
+const stripe = Stripe('<?php echo STRIPE_PUBLISHABLE_KEY; ?>');
+
+// Select payment button
+
+const payBtn = document.getElementById("payButton");
+   
+// Create a Checkout Session with the selected product
+const createCheckoutSession = function (stripe) {
+    return fetch("../Samp/payment_init.php", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            createCheckoutSession: 1,
+        }),
+    }).then(function (result) {
+        return result.json();
+    });
+};
+
+// Handle any errors returned from Checkout
+const handleResult = function (result) {
+    if (result.error) {
+        showMessage(result.error.message);
+    }
+    
+    setLoading(false);
+};
+
+// Show a spinner on payment processing
+function setLoading(isLoading) {
+    if (isLoading) {
+        // Disable the button and show a spinner
+      //  payBtn.disabled = true;
+        document.querySelector("#spinner").classList.remove("hidden");
+        document.querySelector("#buttonText").classList.add("hidden");
+    } else {
+        // Enable the button and hide spinner
+     //   payBtn.disabled = false;
+        document.querySelector("#spinner").classList.add("hidden");
+        document.querySelector("#buttonText").classList.remove("hidden");
+    }
+}
+
+// Display message
+function showMessage(messageText) {
+    const messageContainer = document.querySelector("#paymentResponse");
+	
+    messageContainer.classList.remove("hidden");
+    messageContainer.textContent = messageText;
+	
+    setTimeout(function () {
+        messageContainer.classList.add("hidden");
+        messageContainer.textContent = "";
+    }, 5000);
+}
+
+
+
     function place_ORDER(){
         $.ajax({
             type: "POST",
@@ -361,8 +422,10 @@ $grandtotal=0;
                 let ans = "" + word.localeCompare("Done ");
                 if (ans == 0) {
                
+
+                  
                     
-                    window.location.href='../CHECKOUT/orderDone.php';
+                   // window.location.href='../CHECKOUT/orderDone.php';
                    // getCartDeatils(guesst_login_KEY);
                     //document.getElementById("reg_div").style.display = "none";
                     // document.getElementById("otp_div").style.display = "block";
@@ -378,6 +441,25 @@ $grandtotal=0;
         });
  
     }
+
+    
+// Payment request handler
+payBtn.addEventListener("click", function (evt) {
+    setLoading(true);
+
+    createCheckoutSession().then(function (data) {
+        if(data.sessionId){
+            stripe.redirectToCheckout({
+                sessionId: data.sessionId,
+            }).then(handleResult);
+        }else{
+            handleResult(data);
+        }
+    });
+});
+    
+
+
     </script>
 
     <!-- Footer Section End -->
@@ -634,6 +716,13 @@ $grandtotal=0;
     <!-- Bg overlay Start -->
     <div class="bg-overlay"></div>
     <!-- Bg overlay End -->
+
+  
+
+<script>
+// Set Stripe publishable key to initialize Stripe.js
+
+</script>
 
 </body>
 

@@ -7,19 +7,53 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
 
     $login_id=givedata($conn,"user_master","token_key",$login,"id");
 
-    $full_name=$_POST['full_name'];
-    $email=$_POST['email'];
-    $mobile_no=$_POST['mobile_no'];
-    $address=$_POST['address'];
+    if($_POST["form_type"]=="profile")
+    {
+        $full_name=$_POST['full_name'];
+        $email=$_POST['email'];
+        $mobile_no=$_POST['mobile_no'];
+        $address=$_POST['address'];
 
-    $sql="update user_master set full_name='$full_name',email='$email',mobile_no='$mobile_no' where id='$login_id'";
-        if($conn->query($sql))
+            $sql="update user_master set full_name='$full_name',email='$email',mobile_no='$mobile_no' where id='$login_id'";
+            if($conn->query($sql))
+            {
+                ?><script>alert('Profile information Updated');</script>
+                <?php
+            }
+    }else if($_POST["form_type"]=="pass")
+    {
+        $password=$_POST['password'];
+        $sql="update user_master set password='$password' where id='$login_id'";
+            if($conn->query($sql))
+            {
+                ?><script>alert('Password Updated');</script>
+                <?php
+            }
+    }else if($_POST["form_type"]=="address_change")
+    {
+        $password=$_POST['password'];
+        $sql="update user_master set password='$password' where id='$login_id'";
+            if($conn->query($sql))
+            {
+                ?><script>alert('Password Updated');</script>
+                <?php
+            }
+    }
+    else if($_POST["form_type"]=="add_address")
+    {
+        $full_name=$_POST['full_name'];
+        $address=$_POST['address'];
+        $mobile_no=$_POST['mobile_no'];
+        $pincode=$_POST['pincode'];
+        $address_type=$_POST['address_type'];
+       
+        $sql_="INSERT INTO address_master(user_token_id,address,country,city,pincode,nation,flag,address_type,mobile_no,full_name) VALUES('$login','$address','0','0','$pincode','0','1','$address_type','$mobile_no','$full_name')";
+        if($conn->query($sql_))
 		{
-            $sql_="update address_master set address='$address' where user_token_id='$login'";
-            if($conn->query($sql_))
-            {}
+            ?><script>alert('New Address Updated');</script>
+                <?php
         }
-	
+    }
 	
 }
 
@@ -106,31 +140,16 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
                                     Wishlist</button>
                             </li>
                             <li class="nav-item" role="presentation">
-                                <button class="nav-link" id="pills-card-tab" data-bs-toggle="pill"
-                                    data-bs-target="#pills-card" type="button" role="tab"><i
-                                        data-feather="credit-card"></i> Saved Card</button>
-                            </li>
-                            <li class="nav-item" role="presentation">
                                 <button class="nav-link" id="pills-address-tab" data-bs-toggle="pill"
                                     data-bs-target="#pills-address" type="button" role="tab"><i
                                         data-feather="map-pin"></i>Address</button>
                             </li>
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill"
-                                    data-bs-target="#pills-profile" type="button" role="tab"><i data-feather="user"></i>
-                                    Profile</button>
-                            </li>
-                            <li class="nav-item" role="presentation">
+                             <li class="nav-item" role="presentation">
                                 <button class="nav-link" id="pills-download-tab" data-bs-toggle="pill"
                                     data-bs-target="#pills-download" type="button" role="tab"><i
                                         data-feather="download"></i>Download</button>
                             </li>
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link" id="pills-security-tab" data-bs-toggle="pill"
-                                    data-bs-target="#pills-security" type="button" role="tab"><i
-                                        data-feather="shield"></i>
-                                    Privacy</button>
-                            </li>
+                           
                         </ul>
                     </div>
                 </div>
@@ -215,39 +234,12 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
                                             <div class="dashboard-detail">
                                                 <h6 class="text-content"><?=givedata($conn,"user_master","token_key",$_SESSION['tokenID'],"full_name")?></h6>
                                                 <h6 class="text-content"><?=givedata($conn,"user_master","token_key",$_SESSION['tokenID'],"email")?></h6>
-                                                <a href="javascript:void(0)">Change Password</a>
+                                                <a href="javascript:void(0)"  data-bs-toggle="modal" data-bs-target="#editPassword" >Change Password</a>
                                             </div>
                                         </div>
 
                                         
-                                        <div class="col-12">
-                                            <div class="dashboard-content-title">
-                                                <h4>Address Book <a href="javascript:void(0)" data-bs-toggle="modal"
-                                                        data-bs-target="#editProfile">Edit</a></h4>
-                                            </div>
-
-                                            <div class="row g-4">
-                                                <div class="col-xxl-6">
-                                                    <div class="dashboard-detail">
-                                                        <h6 class="text-content">Default Billing Address</h6>
-                                                        <h6 class="text-content">You have not set a default billing
-                                                            address.</h6>
-                                                        <a href="javascript:void(0)" data-bs-toggle="modal"
-                                                            data-bs-target="#editProfile">Edit Address</a>
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-xxl-6">
-                                                    <div class="dashboard-detail">
-                                                        <h6 class="text-content">Default Shipping Address</h6>
-                                                        <h6 class="text-content">You have not set a default shipping
-                                                            address.</h6>
-                                                        <a href="javascript:void(0)" data-bs-toggle="modal"
-                                                            data-bs-target="#editProfile">Edit Address</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                     
                                     </div>
                                 </div>
                             </div>
@@ -272,6 +264,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
                                             while ($row = mysqli_fetch_assoc($result)) {
                                                 $srid = "1";
                                                 $pid=$row['product_key'];
+                                                $cid=givedata($conn,"products","key_",$pid,"category_id");
                                         ?>
                                         <div class="col-xxl-3 col-lg-6 col-md-4 col-sm-6">
                                             <div class="product-box-3 theme-bg-white h-100">
@@ -292,41 +285,16 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
 
                                                 <div class="product-footer">
                                                     <div class="product-detail">
-                                                        <span class="span-name">Vegetable</span>
+                                                        <span class="span-name"><?=givedata($conn,"category","id",$cid,"category_title")?></span>
                                                         <a href="product-left-thumbnail.html">
-                                                            <h5 class="name">Fresh Bread and Pastry Flour 200 g</h5>
+                                                            <h5 class="name"><?=givedata($conn,"products","key_",$pid,"product_title")?></h5>
                                                         </a>
-                                                        <p class="text-content mt-1 mb-2 product-content">Cheesy feet
-                                                            cheesy grin brie. Mascarpone cheese and wine hard cheese the
-                                                            big cheese everyone loves smelly cheese macaroni cheese
-                                                            croque monsieur.</p>
-                                                        <h6 class="unit mt-1">250 ml</h6>
+                                                      
                                                         <h5 class="price">
-                                                            <span class="theme-color">$08.02</span>
-                                                            <del>$15.15</del>
+                                                            <span class="theme-color">£ <?=givedata($conn,"products","key_",$pid,"retail_rate")?></span>
+                                                          
                                                         </h5>
-                                                        <div class="add-to-cart-box mt-2">
-                                                            <button class="btn btn-add-cart addcart-button"
-                                                                tabindex="0">Add
-                                                                <span class="add-icon">
-                                                                    <i class="fa-solid fa-plus"></i>
-                                                                </span>
-                                                            </button>
-                                                            <div class="cart_qty qty-box">
-                                                                <div class="input-group">
-                                                                    <button type="button" class="qty-left-minus"
-                                                                        data-type="minus" data-field="">
-                                                                        <i class="fa fa-minus"></i>
-                                                                    </button>
-                                                                    <input class="form-control input-number qty-input"
-                                                                        type="text" name="quantity" value="0">
-                                                                    <button type="button" class="qty-right-plus"
-                                                                        data-type="plus" data-field="">
-                                                                        <i class="fa fa-plus"></i>
-                                                                    </button>
-                                                                </div>
-                                                            </div>
-                                                        </div>
+                                                       
                                                     </div>
                                                 </div>
                                             </div>
@@ -352,84 +320,33 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
                                     </div>
 
                                     <div class="order-contain">
+                                    <?php
+                                    $token=$_SESSION['tokenID'];
+                                    $sql = "SELECT * FROM order_master where  user_key='$token'";
+                                            $result = mysqli_query($conn, $sql);
+                                            while ($row = mysqli_fetch_assoc($result)) {
+                                               
+                                                ?>
                                         <div class="order-box dashboard-bg-box">
                                             <div class="order-container">
                                                 <div class="order-icon">
                                                     <i data-feather="box"></i>
                                                 </div>
 
-                                                <div class="order-detail">
-                                                    <h4>Delivers <span>Pending</span></h4>
+                                                <div class="order-detail" onclick="window.location.href='orderDetails.php?id=<?=$row['id']?>'">
+                                                    <h4><?=$row['order_id']?><span>Delevered</span></h4>
                                                     <h6 class="text-content">Gouda parmesan caerphilly mozzarella
                                                         cottage cheese cauliflower cheese taleggio gouda.</h6>
+                                                        <b>Order Details</b>
                                                 </div>
                                             </div>
 
-                                            <div class="product-order-detail">
-                                                <a href="product-left-thumbnail.html" class="order-image">
-                                                    <img src="../assets/images/vegetable/product/1.png"
-                                                        class="blur-up lazyload" alt="">
-                                                </a>
-
-                                                <div class="order-wrap">
-                                                    <a href="product-left-thumbnail.html">
-                                                        <h3>Fantasy Crunchy Choco Chip Cookies</h3>
-                                                    </a>
-                                                    <p class="text-content">Cheddar dolcelatte gouda. Macaroni cheese
-                                                        cheese strings feta halloumi cottage cheese jarlsberg cheese
-                                                        triangles say cheese.</p>
-                                                    <ul class="product-size">
-                                                        <li>
-                                                            <div class="size-box">
-                                                                <h6 class="text-content">Price : </h6>
-                                                                <h5>$20.68</h5>
-                                                            </div>
-                                                        </li>
-
-                                                        <li>
-                                                            <div class="size-box">
-                                                                <h6 class="text-content">Rate : </h6>
-                                                                <div class="product-rating ms-2">
-                                                                    <ul class="rating">
-                                                                        <li>
-                                                                            <i data-feather="star" class="fill"></i>
-                                                                        </li>
-                                                                        <li>
-                                                                            <i data-feather="star" class="fill"></i>
-                                                                        </li>
-                                                                        <li>
-                                                                            <i data-feather="star" class="fill"></i>
-                                                                        </li>
-                                                                        <li>
-                                                                            <i data-feather="star" class="fill"></i>
-                                                                        </li>
-                                                                        <li>
-                                                                            <i data-feather="star"></i>
-                                                                        </li>
-                                                                    </ul>
-                                                                </div>
-                                                            </div>
-                                                        </li>
-
-                                                        <li>
-                                                            <div class="size-box">
-                                                                <h6 class="text-content">Sold By : </h6>
-                                                                <h5>Fresho</h5>
-                                                            </div>
-                                                        </li>
-
-                                                        <li>
-                                                            <div class="size-box">
-                                                                <h6 class="text-content">Quantity : </h6>
-                                                                <h5>250 G</h5>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
+                                           
                                         </div>
 
-                                        
+                                        <?php
+                                            }
+                                            ?>
                                     </div>
                                 </div>
                             </div>
@@ -452,6 +369,13 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
                                     </div>
 
                                     <div class="row g-sm-4 g-3">
+                                    <?php
+                                    $token=$_SESSION['tokenID'];
+                                    $sql = "SELECT * FROM address_master where  user_token_id='$token'";
+                                            $result = mysqli_query($conn, $sql);
+                                            while ($row = mysqli_fetch_assoc($result)) {
+                                               
+                                                ?>
                                         <div class="col-xxl-4 col-xl-6 col-lg-12 col-md-6">
                                             <div class="address-box">
                                                 <div>
@@ -461,32 +385,32 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
                                                     </div>
 
                                                     <div class="label">
-                                                        <label>Home</label>
+                                                        <label><?=$row['address_type']?></label>
                                                     </div>
 
                                                     <div class="table-responsive address-table">
                                                         <table class="table">
                                                             <tbody>
                                                                 <tr>
-                                                                    <td colspan="2">Jack Jennas</td>
+                                                                    <td colspan="2"><?=$row['full_name']?></td>
                                                                 </tr>
 
                                                                 <tr>
                                                                     <td>Address :</td>
                                                                     <td>
-                                                                        <p>8424 James Lane South San Francisco, CA 94080
+                                                                        <p><?=$row['address']?>
                                                                         </p>
                                                                     </td>
                                                                 </tr>
 
                                                                 <tr>
                                                                     <td>Pin Code :</td>
-                                                                    <td>+380</td>
+                                                                    <td><?=$row['pincode']?></td>
                                                                 </tr>
 
                                                                 <tr>
                                                                     <td>Phone :</td>
-                                                                    <td>+ 812-710-3798</td>
+                                                                    <td><?=$row['mobile_no']?></td>
                                                                 </tr>
                                                             </tbody>
                                                         </table>
@@ -494,221 +418,16 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
                                                 </div>
 
                                                 <div class="button-group">
-                                                    <button class="btn btn-sm add-button w-100" data-bs-toggle="modal"
-                                                        data-bs-target="#editProfile"><i data-feather="edit"></i>
-                                                        Edit</button>
+                                                  
                                                     <button class="btn btn-sm add-button w-100" data-bs-toggle="modal"
                                                         data-bs-target="#removeProfile"><i data-feather="trash-2"></i>
                                                         Remove</button>
                                                 </div>
                                             </div>
                                         </div>
-
-                                        <div class="col-xxl-4 col-xl-6 col-lg-12 col-md-6">
-                                            <div class="address-box">
-                                                <div>
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="radio" name="jack"
-                                                            id="flexRadioDefault3">
-                                                    </div>
-
-                                                    <div class="label">
-                                                        <label>Office</label>
-                                                    </div>
-
-                                                    <div class="table-responsive address-table">
-                                                        <table class="table">
-                                                            <tbody>
-                                                                <tr>
-                                                                    <td colspan="2">Terry S. Sutton</td>
-                                                                </tr>
-
-                                                                <tr>
-                                                                    <td>Address :</td>
-                                                                    <td>
-                                                                        <p>2280 Rose Avenue Kenner, LA 70062</p>
-                                                                    </td>
-                                                                </tr>
-
-                                                                <tr>
-                                                                    <td>Pin Code :</td>
-                                                                    <td>+25</td>
-                                                                </tr>
-
-                                                                <tr>
-                                                                    <td>Phone :</td>
-                                                                    <td>+ 504-228-0969</td>
-                                                                </tr>
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
-                                                </div>
-
-                                                <div class="button-group">
-                                                    <button class="btn btn-sm add-button w-100" data-bs-toggle="modal"
-                                                        data-bs-target="#editProfile"><i data-feather="edit"></i>
-                                                        Edit</button>
-                                                    <button class="btn btn-sm add-button w-100" data-bs-toggle="modal"
-                                                        data-bs-target="#removeProfile"><i data-feather="trash-2"></i>
-                                                        Remove</button>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-xxl-4 col-xl-6 col-lg-12 col-md-6">
-                                            <div class="address-box">
-                                                <div>
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="radio" name="jack"
-                                                            id="flexRadioDefault4">
-                                                    </div>
-
-                                                    <div class="label">
-                                                        <label>Neighbour</label>
-                                                    </div>
-
-                                                    <div class="table-responsive address-table">
-                                                        <table class="table">
-                                                            <tbody>
-                                                                <tr>
-                                                                    <td colspan="2">Juan M. McKeon</td>
-                                                                </tr>
-
-                                                                <tr>
-                                                                    <td>Address :</td>
-                                                                    <td>
-                                                                        <p>1703 Carson Street Lexington, KY 40593</p>
-                                                                    </td>
-                                                                </tr>
-
-                                                                <tr>
-                                                                    <td>Pin Code :</td>
-                                                                    <td>+78</td>
-                                                                </tr>
-
-                                                                <tr>
-                                                                    <td>Phone :</td>
-                                                                    <td>+ 859-257-0509</td>
-                                                                </tr>
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
-                                                </div>
-
-                                                <div class="button-group">
-                                                    <button class="btn btn-sm add-button w-100" data-bs-toggle="modal"
-                                                        data-bs-target="#editProfile"><i data-feather="edit"></i>
-                                                        Edit</button>
-                                                    <button class="btn btn-sm add-button w-100" data-bs-toggle="modal"
-                                                        data-bs-target="#removeProfile"><i data-feather="trash-2"></i>
-                                                        Remove</button>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-xxl-4 col-xl-6 col-lg-12 col-md-6">
-                                            <div class="address-box">
-                                                <div>
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="radio" name="jack"
-                                                            id="flexRadioDefault5">
-                                                    </div>
-
-                                                    <div class="label">
-                                                        <label>Home 2</label>
-                                                    </div>
-
-                                                    <div class="table-responsive address-table">
-                                                        <table class="table">
-                                                            <tbody>
-                                                                <tr>
-                                                                    <td colspan="2">Gary M. Bailey</td>
-                                                                </tr>
-
-                                                                <tr>
-                                                                    <td>Address :</td>
-                                                                    <td>
-                                                                        <p>2135 Burning Memory Lane Philadelphia, PA
-                                                                            19135</p>
-                                                                    </td>
-                                                                </tr>
-
-                                                                <tr>
-                                                                    <td>Pin Code :</td>
-                                                                    <td>+26</td>
-                                                                </tr>
-
-                                                                <tr>
-                                                                    <td>Phone :</td>
-                                                                    <td>+ 215-335-9916</td>
-                                                                </tr>
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
-                                                </div>
-
-                                                <div class="button-group">
-                                                    <button class="btn btn-sm add-button w-100" data-bs-toggle="modal"
-                                                        data-bs-target="#editProfile"><i data-feather="edit"></i>
-                                                        Edit</button>
-                                                    <button class="btn btn-sm add-button w-100" data-bs-toggle="modal"
-                                                        data-bs-target="#removeProfile"><i data-feather="trash-2"></i>
-                                                        Remove</button>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-xxl-4 col-xl-6 col-lg-12 col-md-6">
-                                            <div class="address-box">
-                                                <div>
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="radio" name="jack"
-                                                            id="flexRadioDefault1">
-                                                    </div>
-
-                                                    <div class="label">
-                                                        <label>Home 2</label>
-                                                    </div>
-
-                                                    <div class="table-responsive address-table">
-                                                        <table class="table">
-                                                            <tbody>
-                                                                <tr>
-                                                                    <td colspan="2">Gary M. Bailey</td>
-                                                                </tr>
-
-                                                                <tr>
-                                                                    <td>Address :</td>
-                                                                    <td>
-                                                                        <p>2135 Burning Memory Lane Philadelphia, PA
-                                                                            19135</p>
-                                                                    </td>
-                                                                </tr>
-
-                                                                <tr>
-                                                                    <td>Pin Code :</td>
-                                                                    <td>+26</td>
-                                                                </tr>
-
-                                                                <tr>
-                                                                    <td>Phone :</td>
-                                                                    <td>+ 215-335-9916</td>
-                                                                </tr>
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
-                                                </div>
-
-                                                <div class="button-group">
-                                                    <button class="btn btn-sm add-button w-100" data-bs-toggle="modal"
-                                                        data-bs-target="#editProfile"><i data-feather="edit"></i>
-                                                        Edit</button>
-                                                    <button class="btn btn-sm add-button w-100" data-bs-toggle="modal"
-                                                        data-bs-target="#removeProfile"><i data-feather="trash-2"></i>
-                                                        Remove</button>
-                                                </div>
-                                            </div>
-                                        </div>
+<?php
+                                            }?>
+                                       
                                     </div>
                                 </div>
                             </div>
@@ -1659,6 +1378,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
         <div class="modal-dialog modal-lg modal-dialog-centered modal-fullscreen-sm-down">
             <div class="modal-content">
                 <form id="edit_profile" method="POST">
+                <input type="hidden" name="form_type" value="profile">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel2">Edit Profile</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal">
@@ -1690,44 +1410,59 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
                                 </div>
                         </div>
 
-                        <div class="col-12">
-                                <div class="form-floating theme-form-floating">
-                                    <input type="text" class="form-control" id="address" name="address"
-                                        value="<?=givedata($conn,"address_master","user_token_id",$_SESSION['tokenID'],"address")?>">
-                                    <label for="address">Add Address</label>
-                                </div>
-                        </div>
+                        
 
                        
 
-                        <div class="col-xxl-4">
+                        
+
+                        
+                      
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-animation btn-md fw-bold"
+                        data-bs-dismiss="modal">Close</button>
+                    <button type="submit" 
+                        class="btn theme-bg-color btn-md fw-bold text-light">Save changes</button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- Edit Profile End -->
+
+        <!-- Edit Profile Start -->
+        <div class="modal fade theme-modal" id="editPassword" tabindex="-1">
+        <div class="modal-dialog modal-lg modal-dialog-centered modal-fullscreen-sm-down">
+            <div class="modal-content">
+                <form id="edit_pass" method="POST">
+
+                <input type="hidden" name="form_type" value="pass">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel2">Change Password</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row g-4">
+                        <div class="col-xxl-12">
                                 <div class="form-floating theme-form-floating">
-                                    <select class="form-select" id="country" name="country">
-                                        <option selected>Choose Your Country</option>
-                                        <?php
-                                            $sql = "SELECT * FROM country_master ";
-                                            $result = mysqli_query($conn, $sql);
-                                            while ($row = mysqli_fetch_assoc($result)) {
-                                                ?>
-                                                <option value="<?=$row['id']?>"><?=$row['country_name']?></option>
-                                                <?php
-                                            }
-                                                ?>
-                                    </select>
-                                    <label for="floatingSelect">Country</label>
+                                    <input type="password" class="form-control" id="password" name="password" value="<?=givedata($conn,"user_master","token_key",$_SESSION['tokenID'],"password")?>">
+                                    <label for="full_name">New Password</label>
                                 </div>
-                            
+                        </div>
+
+                        <div class="col-xxl-12">
+                                <div class="form-floating theme-form-floating">
+                                    <input type="password" class="form-control" id="cpassword" name="cpassword" value="<?=givedata($conn,"user_master","token_key",$_SESSION['tokenID'],"password")?>">
+                                    <label for="full_name">Old Password</label>
+                                </div>
                         </div>
 
                         
-                        <div class="col-xxl-4">
-                           
-                                <div class="form-floating theme-form-floating">
-                                    <input type="text" class="form-control" id="pincode" name="pincode" value="<?=givedata($conn,"address_master","user_token_id",$_SESSION['tokenID'],"pincode")?>">
-                                    <label for="address3">Pin Code</label>
-                                </div>
-                          
-                        </div>
+                      
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -1745,6 +1480,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
     <div class="modal fade theme-modal" id="add-address" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered modal-fullscreen-sm-down">
             <div class="modal-content">
+                <form method="POST">
+                <input type="hidden" name="form_type" value="add_address">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Add a new address</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal">
@@ -1752,47 +1489,40 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form>
+                   
                         <div class="form-floating mb-4 theme-form-floating">
-                            <input type="text" class="form-control" id="fname" placeholder="Enter First Name">
-                            <label for="fname">First Name</label>
+                            <input type="text" class="form-control" id="full_name"  name="full_name" placeholder="Enter Full Name">
+                            <label for="fname">Full Name</label>
                         </div>
-                    </form>
-
-                    <form>
+                   
                         <div class="form-floating mb-4 theme-form-floating">
-                            <input type="text" class="form-control" id="lname" placeholder="Enter Last Name">
-                            <label for="lname">Last Name</label>
+                            <input type="text" class="form-control" id="mobile_no" name="mobile_no" placeholder="Enter Last Name">
+                            <label for="lname">Mobile Number</label>
                         </div>
-                    </form>
-
-                    <form>
+                   
                         <div class="form-floating mb-4 theme-form-floating">
-                            <input type="email" class="form-control" id="email" placeholder="Enter Email Address">
-                            <label for="email">Email Address</label>
-                        </div>
-                    </form>
-
-                    <form>
-                        <div class="form-floating mb-4 theme-form-floating">
-                            <textarea class="form-control" placeholder="Leave a comment here" id="address"
-                                style="height: 100px"></textarea>
+                            <textarea class="form-control" placeholder="Leave a comment here" id="address" name="address" style="height: 100px"></textarea>
                             <label for="address">Enter Address</label>
                         </div>
-                    </form>
-
-                    <form>
+                
                         <div class="form-floating mb-4 theme-form-floating">
-                            <input type="email" class="form-control" id="pin" placeholder="Enter Pin Code">
+                            <input type="text" class="form-control"  id="pincode" name="pincode" placeholder="Enter Pin Code">
                             <label for="pin">Pin Code</label>
                         </div>
-                    </form>
+
+                        <div class="form-floating mb-4 theme-form-floating">
+                            <select class="form-control" name="address_type">
+                                <option value="Home">Home</option>
+                                <option value="Office">Office</option>
+                            </select>
+                            <label for="pin">Address Type</label>
+                        </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary btn-md" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn theme-bg-color btn-md text-white" data-bs-dismiss="modal">Save
-                        changes</button>
+                    <button type="submit" class="btn theme-bg-color btn-md text-white">Save changes</button>
                 </div>
+                </form>
             </div>
         </div>
     </div>

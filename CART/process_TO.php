@@ -17,7 +17,7 @@ echo "__AJAX-";
 	$sql = "SELECT * FROM cart_master where login_key='$user_key'";
 	$result = mysqli_query($conn, $sql);
     while ($row = mysqli_fetch_assoc($result)) {
-		$sql_="INSERT INTO order_master_details(oid,product_key,user_key,qty,rate,total,coupon_code) VALUES('$order_id','$row[product_key]','$row[login_key]','$row[qty]','$row[rate]','$row[total]','$coupon_code')";
+		$sql_="INSERT INTO order_master_details(oid,product_key,user_key,qty,rate,total) VALUES('$order_id','$row[product_key]','$row[login_key]','$row[qty]','$row[rate]','$row[total]')";
         if($conn->query($sql_))
 		{}
 		$cid=$row['id'];
@@ -40,5 +40,7 @@ echo "__AJAX-";
 	$sql_="update cart_master set flag='0' where login_key='$user_key'";
 	if($conn->query($sql_))
 	{}
+
+	$_SESSION['order_id']=$order_id;
 
 ?> 

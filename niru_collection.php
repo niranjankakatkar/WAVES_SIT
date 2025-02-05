@@ -5,6 +5,11 @@ include 'dbConfig.php';
 //include 'hr_funlist.php';
 //$inityr=$_SESSION[inityr];
 
+
+define('STRIPE_SECRET_KEY', 'sk_test_51QkQxYP6mKPrmPu8YvBPN71gcpY7PJ7i7xWk4lo5RaW5xYk1ZQd4BinFmIXgXtdjwqLYk9JImGmqjV9QY3D0TVPV00PSkhzHd9'); 
+define('STRIPE_PUBLISHABLE_KEY', 'pk_test_51QkQxYP6mKPrmPu8LDODxvSdwRKfJIvzRe4rljnqUGw5DunV2rDMQPo1R8cXoEpVEG0SCFWFyc4C1XXOoqy2b4GD00oaRowOm2'); 
+define('STRIPE_SUCCESS_URL', 'http://localhost/WAVES/CHECKOUT/orderDone.php'); //Payment success URL 
+define('STRIPE_CANCEL_URL', 'http://localhost/WAVES/CHECKOUT/orderFail.php'); //Payment cancel URL 
 ?>		
 
 

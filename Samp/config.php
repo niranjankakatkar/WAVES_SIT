@@ -1,10 +1,15 @@
 <?php 
- 
+ include '../niru_collection.php';
+
 // Product Details  
 // Minimum amount is $0.50 US  
-$productName = "Codex Demo Product";  
-$productID = "12345";  
-$productPrice = 55; 
+$oid=$_SESSION['order_id'];
+
+$productName = "".$oid;  
+$productID = "";
+
+$productPrice = givedata($conn,"order_master","order_id",$oid,"grand_total"); 
+ 
 $currency = "gbp"; 
   
 /* 

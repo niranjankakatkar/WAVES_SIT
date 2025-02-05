@@ -179,7 +179,7 @@ include '../../niru_collection.php';
 										   $result = mysqli_query($conn, $sql);
 
 										   while($row = mysqli_fetch_assoc($result)) {
-if($row['filepath']==""){
+										
 
 											$timepstamp=$row['timestamp'];
 
@@ -294,7 +294,7 @@ if($row['filepath']==""){
 												<?php
 }
 
-										   }
+										   
 
 										   ?>	
 

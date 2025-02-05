@@ -263,6 +263,13 @@ $fl=0;
                                            
                                         </a>
 
+                                        <div class="product-header-top">
+                                                            <button class="btn wishlist-button close_button">
+                                                            <i class="fa-regular fa-heart"></i>
+                                                            <i class="fa-solid fa-heart" style="color:#c50909"></i>
+                                                            </button>
+                                                        </div>
+
 
                                     </div>
                                 </div>
