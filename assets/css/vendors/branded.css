@@ -1,0 +1,79 @@
+.about-section {
+    text-align: center;
+    padding: 40px 20px; 
+    max-width: 100%;
+    margin: 0 auto;
+    color: #000; 
+    box-sizing: border-box; 
+  }
+  
+  .about-section h1 {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 25px;
+    color: #000;
+  }
+  
+  .about-section p {
+    font-size: 0.7rem;
+    color: #333; 
+    margin-bottom: 20px;
+  }
+  
+  .about-section a {
+    color: #000;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .about-section a:hover {
+    text-decoration: underline;
+  }
+  
+  p:last-of-type {
+    margin-bottom: 0; 
+  }
+
+  @media (min-width: 1200px) {
+    .about-section {
+      padding: 60px 80px;
+    }
+  }
+
+  /* about code end */
+  
+/* banner code satrt */
+
+  .home-section-2 {
+    background-color: #160944b1; 
+    padding:  0; 
+    text-align: center;
+    position: relative; 
+    height: 70vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+  }
+  
+  .get-in-touch-text {
+    font-size: 3rem;
+    font-weight: 900;
+    text-transform: uppercase; 
+    color: #ffffff; 
+    margin: 0 auto; 
+    letter-spacing: 0.2rem; 
+  }
+  
+  .home-contain {
+    display: flex;
+    align-items: center; 
+    justify-content: center; 
+    min-height: 200px; 
+  }
+  
+  /* end */
+
+  
+
+
