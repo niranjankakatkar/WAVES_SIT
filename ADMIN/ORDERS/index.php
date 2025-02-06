@@ -140,7 +140,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 													<td>3</td>
 													<td><?=$row['grand_total']?></td>
 													<td>PAID</td>
-													<td><span class="mb-2 mr-2 badge badge-secondary">Cancel</span></td>
+													<td>
+													<?php
+														if($row['status']=='done'){
+															?>
+															<span class="mb-2 mr-2 badge badge-success">Success</span>
+															<?php
+														}else if($row['status']=='pending'){
+															?>
+															<span class="mb-2 mr-2 badge badge-warning">Success</span>
+															<?php
+														}else{
+															?>
+															<span class="mb-2 mr-2 badge badge-secondary">Cancel</span>
+															<?php
+														}
+													?></td>
 													
 													<td>
 														<div class="btn-group mb-1">

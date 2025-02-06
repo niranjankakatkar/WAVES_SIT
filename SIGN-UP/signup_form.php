@@ -12,6 +12,9 @@ echo "__AJAX-";
     $password=$_POST['password'];
     $user_type=$_POST['user_type'];
 	$vat_number=$_POST['vat_number'];
+	$address=$_POST['address'];
+	$city=$_POST['city'];
+	$pincode=$_POST['pincode'];
 	$flag="0";
 	$key_=generateRandomCHAR_INT(10);
 	$otp=generateRandomINT(6);
@@ -28,7 +31,7 @@ echo "__AJAX-";
         if($conn->query($sql))
 		{
 			
-			$sql_="INSERT INTO address_master(user_token_id,address,address2,country,city,pincode,nation,flag) 	VALUES('$key_','','','','', '' , '0','1')";
+			$sql_="INSERT INTO address_master(user_token_id,address,address2,country,city,pincode,nation,flag,address_type,mobile_no,full_name) VALUES('$key_','$address','','','$city', '$pincode' , '0','1','Home','$mobile_no','$full_name')";
             if($conn->query($sql_))
             {}
 

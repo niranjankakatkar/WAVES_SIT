@@ -55,7 +55,7 @@ $grandtotal=0;
                                         <div  style="background-color:#f8f8f8;padding:3%"><br>
                                             <h3>Contact information</h3><br>
                                             <p>We'll use this email to send you details and updates about your order.</p>
-                                            <input type="text" class="form-control" name="email" id="email" placeholder="Enter Email..." required>
+                                            <input type="text" class="form-control" name="temp_email" id="temp_email" placeholder="Enter Email..." required>
                                             <p>You are currently checking out as a guest.</p><br><br>
 
                                             <h3>Billing address</h3><br>
@@ -65,7 +65,7 @@ $grandtotal=0;
                                                     <div class="custom-form">
                                                         <label for="full_name">Full Address</label>
                                                         <div class="custom-input">
-                                                            <textarea placeholder="Full Address" row="3" class="form-control" id="full_name" name="full_name"></textarea>
+                                                            <textarea placeholder="Full Address" row="3" class="form-control" id="temp_full_address" name="temp_full_address"></textarea>
                                                            
                                                         </div>
                                                     </div>
@@ -74,7 +74,7 @@ $grandtotal=0;
                                                     <div class="custom-form">
                                                         <label for="full_name">City</label>
                                                         <div class="custom-input">
-                                                            <input type="text" class="form-control" id="city" name="city"
+                                                            <input type="text" class="form-control" id="temp_city" name="temp_city"
                                                                 placeholder="City">
                                                         </div>
                                                     </div>
@@ -84,7 +84,7 @@ $grandtotal=0;
                                                     <div class="custom-form">
                                                         <label for="full_name">Post Code</label>
                                                         <div class="custom-input">
-                                                            <input type="text" class="form-control" id="pincode" name="pincode"
+                                                            <input type="text" class="form-control" id="temp_pincode" name="temp_pincode"
                                                                 placeholder="Post Code">
                                                         </div>
                                                     </div>
@@ -94,7 +94,7 @@ $grandtotal=0;
                                                     <div class="custom-form">
                                                         <label for="full_name">Full Name</label>
                                                         <div class="custom-input">
-                                                            <input type="text" class="form-control" id="full_name" name="full_name"
+                                                            <input type="text" class="form-control" id="temp_full_name" name="temp_full_name"
                                                                 placeholder="Full Name">
                                                         </div>
                                                     </div>
@@ -411,10 +411,19 @@ function showMessage(messageText) {
 
 
     function place_ORDER(){
+
+        var email=document.getElementById('temp_email').value;
+        var address=document.getElementById('temp_full_address').value;
+        var city=document.getElementById('temp_city').value;
+        var pincode=document.getElementById('temp_pincode').value;
+        var full_name=document.getElementById('temp_full_name').value;
+       // var address_id=document.getElementById('address_id').value;
+
+
         $.ajax({
             type: "POST",
             url: "form_submit.php",
-          
+            data: ({ email: email, address: address,city:city,pincode:pincode,full_name:full_name }), // 
             success: function (data) {
                 console.log('my message' + data);
                 let mydata = data.split("__AJAX-");

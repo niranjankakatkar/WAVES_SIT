@@ -156,6 +156,33 @@
                                     </div>
                                 </div>
 
+                                <div class="col-xxl-12 col-lg-12 col-sm-6">
+                                         <div class="custom-form">
+                                            <label for="vat_number">Full Address</label>
+                                            <div class="custom-input pt-2">
+                                                <input type="text" class="form-control" id="address"  name="address" placeholder="Full Address">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xxl-6 col-lg-6 col-sm-6">
+                                    <div class="custom-form">
+                                            <label for="vat_number">City</label>
+                                            <div class="custom-input pt-2">
+                                                <input type="text" class="form-control" id="city"  name="city" placeholder="Enter City">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xxl-6 col-lg-6 col-sm-6">
+                                    <div class="custom-form">
+                                            <label for="vat_number">Pincode</label>
+                                            <div class="custom-input pt-2">
+                                                <input type="text" class="form-control" id="pincode"  name="pincode" placeholder="Enter Pincode">
+                                            </div>
+                                        </div>
+                                    </div>
+
                                 <div class="col-12" style="display:none">
                                     <label class="form-label fw-semibold">I am a:</label>
                                     <div class="d-flex flex-wrap gap-3">
@@ -188,6 +215,8 @@
                                             </div>
                                         </div>
                                     </div>
+
+                                   
 
                                 </div>
 
