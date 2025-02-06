@@ -142,17 +142,25 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 													<td>PAID</td>
 													<td>
 													<?php
-														if($row['status']=='done'){
+														if($row['admin_flag']=='0'){
 															?>
-															<span class="mb-2 mr-2 badge badge-success">Success</span>
+															<span class="mb-2 mr-2 badge badge-primary">Pending</span>
 															<?php
-														}else if($row['status']=='pending'){
+														}else if($row['admin_flag']=='1'){
 															?>
-															<span class="mb-2 mr-2 badge badge-warning">Success</span>
+															<span class="mb-2 mr-2 badge badge-secondary">Accepted</span>
+															<?php
+														}else if($row['admin_flag']=='2'){
+															?>
+															<span class="mb-2 mr-2 badge badge-warning">Ready To Ship</span>
+															<?php
+														}else if($row['admin_flag']=='3'){
+															?>
+															<span class="mb-2 mr-2 badge badge-info">On The Way</span>
 															<?php
 														}else{
 															?>
-															<span class="mb-2 mr-2 badge badge-secondary">Cancel</span>
+															<span class="mb-2 mr-2 badge badge-danger">Cancel</span>
 															<?php
 														}
 													?></td>

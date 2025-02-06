@@ -149,8 +149,18 @@ if($_SESSION['loginID']=="")
                             <div class="collapse">
                                 <ul class="sub-menu" id="orders" data-parent="#sidebar-menu">
                                     <li class="">
-                                        <a class="sidenav-item-link" href="../ORDERS/new.php">
-                                            <span class="nav-text">New Order</span>
+                                        <a class="sidenav-item-link" href="../ORDERS/pending.php">
+                                            <span class="nav-text">Pending Order</span>
+                                        </a>
+                                    </li>
+                                    <li class="">
+                                        <a class="sidenav-item-link" href="../ORDERS/accept.php">
+                                            <span class="nav-text">Accepted Order</span>
+                                        </a>
+                                    </li>
+                                    <li class="">
+                                        <a class="sidenav-item-link" href="../ORDERS/shiped.php">
+                                            <span class="nav-text">Shiped Order</span>
                                         </a>
                                     </li>
                                     <li class="">
@@ -159,15 +169,11 @@ if($_SESSION['loginID']=="")
                                         </a>
                                     </li>
                                     <li class="">
-                                        <a class="sidenav-item-link" href="#">
-                                            <span class="nav-text">Order Detail</span>
+                                        <a class="sidenav-item-link" href="../ORDERS/cancel.php">
+                                            <span class="nav-text">Cancel Order</span>
                                         </a>
                                     </li>
-                                    <li class="">
-                                        <a class="sidenav-item-link" href="#">
-                                            <span class="nav-text">Invoice</span>
-                                        </a>
-                                    </li>
+                                    
                                 </ul>
                             </div>
                         </li>

@@ -118,10 +118,16 @@ if(!empty($_GET['checkout_session_id'])){
             } 
         }else{ 
             $statusMsg = "Invalid Transaction! $api_error";  
+            $sql_="update order_master set status='cancel',tran_id='$transactionID',stripe_checkout_session_id='$checkout_session_id' where order_id='$oid'";
+            if($conn->query($sql_))
+            {}
         } 
     } 
 }else{ 
     $statusMsg = "Invalid Request!"; 
+    $sql_="update order_master set status='cancel',tran_id='$transactionID',stripe_checkout_session_id='$checkout_session_id' where order_id='$oid'";
+    if($conn->query($sql_))
+    {}
 } 
 
 
@@ -238,8 +244,8 @@ $grandtotal=0;
                             </div>
 
                             <div class="order-contain">
-                                <h3 class="theme-color">Order Success</h3>
-                                <h5 class="text-content">Payment Is Successfully And Your Order Is On The Way</h5>
+                                <h3 class="theme-color">Order Successful</h3>
+                                <h5 class="text-content">Your Payment Was Successful And Your Order Is On The Way</h5>
                                 <h6>Transaction ID: <?=givedata($conn,"order_master","order_id",$oid,"transactionID")?></h6>
                             </div>
                             <?php

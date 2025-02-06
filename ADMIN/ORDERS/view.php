@@ -186,15 +186,17 @@ $oid=givedata($conn,"order_master","id",$_GET['id'],"order_id");
 								</div>
 							</div>
 							<!-- Tracking Detail -->
-							<div class="card mt-4 trk-order">
+							<div class="card mt-4 trk-order" >
 								<div class="p-4 text-center text-white text-lg bg-dark rounded-top">
 									<span class="text-uppercase">Tracking Order No - </span>
 									<span class="text-medium">34VB5540K83</span>
 								</div>
+								
+								
 								<div
 									class="d-flex flex-wrap flex-sm-nowrap justify-content-between py-3 px-2 bg-secondary">
 									<div class="w-100 text-center py-1 px-2"><span class="text-medium">Shipped
-											Via:</span> UPS Ground</div>
+											Via:</span> Gowdown</div>
 									<div class="w-100 text-center py-1 px-2"><span class="text-medium">Status:</span>
 										Checking Quality</div>
 									<div class="w-100 text-center py-1 px-2"><span class="text-medium">Expected

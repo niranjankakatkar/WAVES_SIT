@@ -18,29 +18,20 @@ if ($Dflag != "") {
 }
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-	$full_name = $_POST['full_name'];
-	$email = $_POST['email'];
-	$mobile_no = $_POST['mobile_no'];
-	$password = $_POST['password'];
-	$id = $_POST['customer_id'];
+	
+		$oid = $_POST['order_id'];
+		$respocse = $_POST['respocse'];
 
-	$flag = "1";
-	$key_ = generateRandomString(20);
+		$order_id=givedata($conn,"order_master","id",$oid,"order_id");
+		
+		$sql = "UPDATE order_master set admin_flag='2'  where id='$oid'";
+        //echo '---'.$sql;
+		if ($conn->query($sql)) {}
 
-	/*$image=$_FILES['category_img']['name']; 
-				$imageArr=explode('.',$image); //first index is file name and second index file type
-				$rand=rand(100000,999999);
-				$newImageName=$rand.'.'.$imageArr[1];
-				$uploadPath="../uploads/category/".$newImageName;
-				$isUploaded=move_uploaded_file($_FILES["category_img"]["tmp_name"],$uploadPath);
-	 */
-
-	$sql = "UPDATE user_master set full_name='$full_name',email='$email',mobile_no='$mobile_no', password='$password'  where id='$id'";
-	echo "" . $sql;
-	if ($conn->query($sql)) {
-
-	}
-
+		$sql_="INSERT INTO order_track_master(order_id,order_status,remark)	 VALUES('$order_id','Shiped','$respocse')";
+			if($conn->query($sql_))
+			{}
+	
 
 }
 ?>
@@ -113,19 +104,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 												<tr>
 													<th>ID</th>
 													<th>Customer</th>
-													<th>Email</th>
-													<th>Items</th>
+													<th>Items Count</th>
 													<th>Price</th>
 													<th>Payment</th>
-													<th>Status</th>
-													
-													<th>Action</th>
+                                                    <th>Expected Delevery</th>
+													<th >Action</th>
+												
 												</tr>
 											</thead>
 
 											<tbody>
 											<?php
-												$sql = "SELECT * FROM order_master ";
+												$sql = "SELECT * FROM order_master where admin_flag='1' ORDER BY id DESC";
 												$result = mysqli_query($conn, $sql);
 												while ($row = mysqli_fetch_assoc($result)) {
 													$timepstamp = $row['timestamp'];
@@ -136,48 +126,40 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 													?>
 												<tr>
 													<td><?=$row['order_id']?></td>
-													<td><?=givedata($conn,"user_master","token_key",$userKey,"full_name")?></td>
-													<td><?=givedata($conn,"user_master","token_key",$userKey,"email")?></td>
+													<td><?=givedata($conn,"user_master","token_key",$userKey,"full_name")?><br>
+												<?=givedata($conn,"user_master","token_key",$userKey,"email")?></td>
+												
 													<td><?=retrivecount($conn,"order_master_details"," where oid='$oid'")?></td>
 													<td><?=$row['grand_total']?></td>
-													<td>PAID</td>
+													
 													<td>
 														
 													<?php
 														if($row['status']=='done'){
 															?>
-															<span class="mb-2 mr-2 badge badge-success">Success</span>
+															<span >Success</span>
 															<?php
 														}else if($row['status']=='pending'){
 															?>
-															<span class="mb-2 mr-2 badge badge-warning">Success</span>
+															<span >Pending</span>
 															<?php
 														}else{
 															?>
-															<span class="mb-2 mr-2 badge badge-secondary">Cancel</span>
+															<span >Cancel</span>
 															<?php
 														}
 													?>
 													</td>
-													
-													<td>
-														<div class="btn-group mb-1">
-															<button type="button"
-																class="btn btn-outline-success">Info</button>
-															<button type="button"
-																class="btn btn-outline-success dropdown-toggle dropdown-toggle-split"
-																data-bs-toggle="dropdown" aria-haspopup="true"
-																aria-expanded="false" data-display="static">
-																<span class="sr-only">Info</span>
-															</button>
+                                                    <td><?=$row['expected_date']?></td>
 
-															<div class="dropdown-menu">
-																<a class="dropdown-item" href="view.php?id=<?=$row['id']?>">Detail</a>
-																
-																<a class="dropdown-item" href="#">Cancel</a>
-															</div>
-														</div>
+													<td >
+
+													 <button class="mb-2 mr-2 badge badge-success" onclick="get_otheruserdata(<?= $row['id'] ?>)"
+																		data-bs-toggle="modal"
+																		data-bs-target="#accept"><b>Ready to Ship</b>  </button>
+														
 													</td>
+													
 												</tr>
 												<?php
 												}
@@ -190,8 +172,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 						</div>
 					</div>
 				</div> <!-- End Content -->
-			</div> <!-- End Content Wrapper -->
+			</div> 
+		
 
+					
 
 			<!-- Footer -->
 			<footer class="footer mt-auto">
@@ -206,7 +190,58 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		</div> <!-- End Page Wrapper -->
 	</div> <!-- End Wrapper -->
 
+	<div class="modal fade modal-add-contact" id="accept" tabindex="-1" role="dialog"
+						aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+						<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+							<div class="modal-content">
+								<form method="POST">
+									<div class="modal-header px-4">
+										<h5 class="modal-title" id="exampleModalCenterTitle">Update Order Status
+										</h5>
+									</div>
 
+									<div class="modal-body px-4">
+										
+                                    <input type="hidden" name="order_id" id="order_id" value="">
+
+										
+										<div class="row mb-2">
+											
+											<div class="col-lg-12">
+												<div class="form-group">
+													<label for="full_name">Message</label>
+													<textarea name="respocse" class="form-control" row="6"></textarea>
+													
+												</div>
+											</div>
+
+											<!-- <div class="col-lg-6">
+												<div class="form-group">
+													<label for="lastName">Last name</label>
+													<input type="text" class="form-control" id="lastName" value="Deo">
+												</div>
+											</div>
+											
+											<div class="col-lg-6">
+												<div class="form-group mb-4">
+													<label for="userName">User name</label>
+													<input type="text" class="form-control" id="userName" value="johndoe">
+												</div>
+											</div> -->
+
+
+											
+										</div>
+
+										<div class="modal-footer px-4">
+											<button type="button" class="btn btn-secondary btn-pill"
+												data-bs-dismiss="modal">Cancel</button>
+											<button type="submit" class="btn btn-primary btn-pill">Update</button>
+										</div>
+								</form>
+							</div>
+						</div>
+					</div>
 	<!-- Common Javascript -->
 	<script src="../assets/plugins/jquery/jquery-3.5.1.min.js"></script>
 	<script src="../assets/js/bootstrap.bundle.min.js"></script>
@@ -224,6 +259,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 	<!-- Ekka Custom -->
 	<script src="../assets/js/ekka.js"></script>
+
+	<script>
+		
+		function get_otheruserdata(id) {
+
+document.getElementById("order_id").value = id;
+
+
+
+}
+	</script>
 </body>
 
 

@@ -8,7 +8,7 @@ echo "__AJAX-";
 
 
 $session_Token=givedata($conn,"user_master","token_key",$_SESSION['guesst_login_KEY'],"id");
-
+$address_id="";
 if($session_Token==""){
 	$full_name = $_POST['full_name'];
 	$email=$_POST['email'];
@@ -18,7 +18,7 @@ if($session_Token==""){
 	$password=generateRandomCHAR_INT(6);
 	$mobile_no="0";
 	$user_type='Retailer';
-	$address_id=$_POST['address_id'];
+	
 	
 	$key_=$_SESSION['guesst_login_KEY'];
 	$sql="INSERT INTO user_master(full_name,email,mobile_no,password,user_type,vat_number,token_key,OTP,flag) 	VALUES('$full_name','$email','$mobile_no','$password','$user_type', '' ,  '$key_','','1')";
@@ -32,7 +32,10 @@ if($session_Token==""){
 
 		}
 	}
+}else{
+	$address_id=$_POST['address_id'];
 }
+
 	$oid = $_SESSION['OID'];
 	$transaction_id=generateRandomINT(14);
     $qty=1;

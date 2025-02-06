@@ -124,7 +124,7 @@ $grandtotal=0;
                                         <div class="checkout-title">
                                             <h4>Delivery Address</h4>
                                         </div>
-
+                                        <input type="hidden" name="address_id" id="address_id" value="0">
                                         <div class="checkout-detail">
                                             <div class="row g-4">
 
@@ -138,8 +138,8 @@ $grandtotal=0;
                                                     <div class="delivery-address-box">
                                                         <div>
                                                             <div class="form-check">
-                                                                <input class="form-check-input" type="radio" name="address_id" value="<?=$row['id']?>"
-                                                                    id="address_id">
+                                                                <input class="form-check-input" type="radio" onclick="address_click(<?=$row['id']?>)" name="address_" value="<?=$row['id']?>"
+                                                                    id="address_">
                                                             </div>
 
                                                             <div class="label">
@@ -331,11 +331,23 @@ $grandtotal=0;
 
 
                      
+                        <?php
+                                $session_Token=givedata($conn,"user_master","token_key",$_SESSION['guesst_login_KEY'],"id");
 
-                        <button onclick="place_ORDER()" id="payButton" class="btn theme-bg-color text-white btn-md w-100 mt-4 fw-bold">
+                                if($session_Token==""){
+                                        ?>
+                        <button onclick="place_ORDER(1)" id="payButton" class="btn theme-bg-color text-white btn-md w-100 mt-4 fw-bold">
                         <div class="spinner hidden" id="spinner"></div>
                         <span id="buttonText">Pay Now</span></button>
-                      
+                        <?php
+                                }else{
+                                    ?>
+                                    <button onclick="place_ORDER(0)" id="payButton" class="btn theme-bg-color text-white btn-md w-100 mt-4 fw-bold">
+                                    <div class="spinner hidden" id="spinner"></div>
+                                    <span id="buttonText">Pay Now</span></button>
+                                    <?php       
+                                }
+                      ?>
                     </div>
                 </div>
             </div>
@@ -349,13 +361,16 @@ $grandtotal=0;
 
      <script>
 
-
+function address_click(id){
+   
+    document.getElementById('address_id').value=id;
+}
 const stripe = Stripe('<?php echo STRIPE_PUBLISHABLE_KEY; ?>');
 
 // Select payment button
 
 const payBtn = document.getElementById("payButton");
-   
+ 
 // Create a Checkout Session with the selected product
 const createCheckoutSession = function (stripe) {
     return fetch("../Samp/payment_init.php", {
@@ -410,20 +425,55 @@ function showMessage(messageText) {
 
 
 
-    function place_ORDER(){
+    function place_ORDER(id){
 
-        var email=document.getElementById('temp_email').value;
-        var address=document.getElementById('temp_full_address').value;
-        var city=document.getElementById('temp_city').value;
-        var pincode=document.getElementById('temp_pincode').value;
-        var full_name=document.getElementById('temp_full_name').value;
-       // var address_id=document.getElementById('address_id').value;
-
-
+        var email="";
+         var address="";
+        var city="";
+        var pincode="";
+        var full_name="";
+         var address_id="";
+         var flag=0;
+       if(id===1)
+       {
+      
+         email=document.getElementById('temp_email').value;
+     
+         address=document.getElementById('temp_full_address').value;
+       
+         city=document.getElementById('temp_city').value;
+       
+         pincode=document.getElementById('temp_pincode').value;
+      
+         full_name=document.getElementById('temp_full_name').value;
+         flag=1;
+         
+       
+        
+       }else{
+       
+         email="";
+          address="";
+         city="";
+         pincode="";
+         full_name="";
+          
+        
+         address_id=document.getElementById('address_id').value;
+        
+         if(address_id==0){
+            alert('Please Select Address');
+           
+         }else{
+            flag=1;
+         }
+       }
+      
+       if(flag==1){
         $.ajax({
             type: "POST",
             url: "form_submit.php",
-            data: ({ email: email, address: address,city:city,pincode:pincode,full_name:full_name }), // 
+            data: ({ email: email, address: address,city:city,pincode:pincode,full_name:full_name,address_id:address_id }), // 
             success: function (data) {
                 console.log('my message' + data);
                 let mydata = data.split("__AJAX-");
@@ -431,8 +481,16 @@ function showMessage(messageText) {
                 let ans = "" + word.localeCompare("Done ");
                 if (ans == 0) {
                
-
-                  
+                    createCheckoutSession().then(function (data) {
+                            if(data.sessionId){
+                                stripe.redirectToCheckout({
+                                    sessionId: data.sessionId,
+                                }).then(handleResult);
+                            }else{
+                                handleResult(data);
+                            }
+                        });
+                 
                     
                    // window.location.href='../CHECKOUT/orderDone.php';
                    // getCartDeatils(guesst_login_KEY);
@@ -448,6 +506,7 @@ function showMessage(messageText) {
                 alert("Error occurred while submitting the form");
             }
         });
+    }
  
     }
 
@@ -456,15 +515,7 @@ function showMessage(messageText) {
 payBtn.addEventListener("click", function (evt) {
     setLoading(true);
 
-    createCheckoutSession().then(function (data) {
-        if(data.sessionId){
-            stripe.redirectToCheckout({
-                sessionId: data.sessionId,
-            }).then(handleResult);
-        }else{
-            handleResult(data);
-        }
-    });
+    
 });
     
 

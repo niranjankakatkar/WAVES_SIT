@@ -1,7 +1,7 @@
 <?php
 
 //local
-/*
+
  $dbhost = "localhost";
 
  $dbuser = "root";
@@ -9,12 +9,13 @@
  $dbpass = "";
 
  $db = "waves";
-*/
+
 
 
  //live
 
  
+/*
  $dbhost = "localhost";
 
  $dbuser = "sitsolutionsco_waves_packaging";
@@ -22,7 +23,7 @@
  $dbpass = "wavedev@2024#";
 
  $db = "sitsolutionsco_waves_packaging";
-
+*/
 
 
 
