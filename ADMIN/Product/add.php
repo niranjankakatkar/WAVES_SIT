@@ -52,7 +52,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
 		if($conn->query($sql))
         {
             ?>
-			   
+			    <script>alert("Product Details Updated"); window.location.href="../Product/"; </script>
 		    <?php
         }
 	}										

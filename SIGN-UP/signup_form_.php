@@ -17,8 +17,8 @@ $que_ans = $_POST['que_ans'];
 $address = $_POST['address_1'];
 $address2 = $_POST['address_2'];
 $country = $_POST['country'];
-$city = $_POST['city'];
-$pincode = $_POST['post_code'];
+$city = $_POST['city_1'];
+$pincode = $_POST['city_1'];
 $nation = $_POST['nation'];
 
 	$full_name = $_POST['full_name1'];
@@ -44,8 +44,8 @@ $nation = $_POST['nation'];
         if($conn->query($sql))
 		{
 
-            $sql_="INSERT INTO address_master(user_token_id,address,address2,country,city,pincode,nation,flag) 
-        	VALUES('$key_','$address','$address2','$country','$city', '$pincode' ,  '$nation','1')";
+            $sql_="INSERT INTO address_master(user_token_id,address,address2,country,city,pincode,nation,flag,address_type,mobile_no,full_name) 
+        	VALUES('$key_','$address','$address2','$country','$city', '$pincode' ,  '$nation','1','Home','$mobile_no','$full_name')";
             if($conn->query($sql_))
             {}
 			

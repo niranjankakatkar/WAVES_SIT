@@ -1,4 +1,25 @@
+<?php include '../niru_collection.php';
 
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+
+    $key=$_POST['resetKEY'];
+	$password=$_POST['password'];
+
+  $userKEY=givedata($conn,"reset_keygen","RESET_token_key",$key,"reg_token");
+  
+	$sql_="update user_master set password='$password' where token_key='$userKEY'";
+	if($conn->query($sql_))
+	{}
+
+    $sql_="update reset_keygen set flag='1' where RESET_token_key='$key'";
+	if($conn->query($sql_))
+	{}
+
+
+}
+$id=$_GET['i'];
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,7 +41,7 @@
         body {
             text-align: center;
             margin: 0 auto;
-            width: 650px;
+            width: 500px;
             font-family: 'Public Sans', sans-serif;
             background-color: #e2e2e2;
             display: block;
@@ -118,11 +139,13 @@
                     <table class="header-table" align="center" border="0" cellpadding="0" cellspacing="0" width="100%">
                         <tr class="header"
                             style="background-color: #f7f7f7;display: flex;align-items: center;justify-content: space-between;width: 100%;">
-                            <td class="header-logo " align="center">
-                                <a href="../front-end/index.html" style="display: block; text-align: left;">
+                            <td class="header-logo " align="center" style="text-align: center;">
+                                <a href="http://wavespackaging.sitsolutions.co.in/" style="display: block; text-align: left;">
                                     <img src="../assets/images/logo/Waves Logo Jpg.jpg" style="width:80%" class="main-logo" alt="logo">
                                 </a>
                             </td>
+
+                            
                             
                         </tr>
                     </table>
@@ -137,6 +160,15 @@
                             </tr>
                         </thead>
                     </table>
+
+                    <?php
+                      $flag=givedata($conn,"reset_keygen","RESET_token_key",$id,"flag");
+                    if($flag==1){
+                            ?>
+                            <h2>Your Password Updated..</h2>
+                            <?php
+                    }else{
+                    ?>
 
                     <table class="content-table" style="margin-top: 40px;" align="center" border="0" cellpadding="0"
                         cellspacing="0" width="100%">
@@ -158,10 +190,12 @@
                     <table class="button-table" style="margin-top: 27px;" align="center" border="0" cellpadding="0"
                         cellspacing="0" width="100%">
                         <thead>
-                        <div class="custom-form"><br><br>
+                            <form method="POST">
+                                <input type="hidden" name="resetKEY" id="resetKEY" value="<?=$_GET['i']?>">
+                          <div class="custom-form"><br><br>
                                     <label for="email" class="form-label">New Password</label>
                                     <div class="custom-input">
-                                        <input type="password" class="form-control" id="email" name="username"
+                                        <input type="password" class="form-control" id="password" name="password"
                                             required>
                                     </div>
                           </div>
@@ -172,7 +206,14 @@
                                         <input type="password" class="form-control" id="email" name="username"
                                             required>
                                     </div>
+
+                                    <div class="custom-form"><br>
+                                        <button type="submit">UPDATE</button>
+                                    </div>
+
+
                           </div>
+                          </form>
                         </thead>
                     </table>
 
@@ -189,6 +230,7 @@
                             </tr>
                         </thead>
                     </table>
+                    <?php } ?>
 
                     <table class="text-center footer-table" align="center" border="0" cellpadding="0" cellspacing="0"
                         width="100%"
@@ -208,16 +250,13 @@
                                     align="center" style="margin: 8px auto 20px;">
                                     <tr>
                                         <td>
-                                            <a href="javascript:void(0)"
+                                            <a href="http://wavespackaging.sitsolutions.co.in/CONTACT-US"
                                                 style="font-size: 14px; font-weight: 600; color: #fff; text-decoration: underline; text-transform: capitalize;">Contact
                                                 Us</a>
                                         </td>
+                                        
                                         <td>
-                                            <a href="javascript:void(0)"
-                                                style="font-size: 14px; font-weight: 600; color: #fff; text-decoration: underline; text-transform: capitalize; margin-left: 20px;">unsubscribe</a>
-                                        </td>
-                                        <td>
-                                            <a href="javascript:void(0)"
+                                            <a href="http://wavespackaging.sitsolutions.co.in/"
                                                 style="font-size: 14px; font-weight: 600; color: #fff; text-decoration: underline; text-transform: capitalize; margin-left: 20px;">privacy
                                                 Policy</a>
                                         </td>

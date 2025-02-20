@@ -240,6 +240,9 @@ $fl=0;
                         $timepstamp = $row['timestamp'];
                         $timepstamp = date_create("" . $timepstamp);
                         $fl=1;
+
+                        $exvat=$row['retail_rate'];
+                        $invat=$exvat+($exvat*0.2);
                         ?>
                         <div>
                             <div class="product-box-3 h-100 wow fadeInUp">
@@ -303,20 +306,20 @@ $fl=0;
                                             <h5 class="name"><?php
                                             $pname=$row['product_title'];
                                             $plenght=strlen($pname);
-                                           if($plenght>=20){
-                                            echo shorten($row['product_title'], 20)."...";
-                                           }else{
+                                           
                                             echo $row['product_title'];
-                                           }
+                                           
                                             ?></h5>
                                         </a>
-                                        <p class="text-content mt-1 mb-2 product-content"><?= $row['description'] ?>
-                                        </p>
-
-                                        <h6 class="unit">Dimensions: <?= $row['dimensions'] ?></h6>
-                                        <h5 class="price"><span class="theme-color">£ <?= $row['retail_rate'] ?></span>
+                                        
+                                        <h5 class="price"><span class="theme-color">£<?= $row['retail_rate'] ?> ex.VAT <br><h6 class="unit">£<?=$invat?> inc. VAT</h6></span>
                                         </h5>
+                                        <?php
+if($plenght>=25){}else{?><br><?php                                           
+}
+                                        ?>
                                         <div class="add-to-cart-box bg-white"><br>
+                                       
                                         <?php
                                         $avlKey=givedataMulti($conn,"cart_master"," product_key='$row[key_]' AND login_key='$_SESSION[guesst_login_KEY]'","id");
                                         if($avlKey!=""){

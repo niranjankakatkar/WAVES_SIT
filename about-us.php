@@ -1,121 +1,400 @@
-<?php include 'header.php';?> 
+<?php include 'header.php'; ?>
 
 
-    <!-- Breadcrumb Section Start -->
-    <section class="breadcrumb-section pt-0">
-        <div class="container-fluid-lg">
-            <div class="row">
-                <div class="col-12">
-                    <div class="breadcrumb-contain">
-                        <h2>About Us</h2>
-                        <nav>
-                            <ol class="breadcrumb mb-0">
-                                <li class="breadcrumb-item">
-                                    <a href="index.html">
-                                        <i class="fa-solid fa-house"></i>
-                                    </a>
+<!-- Breadcrumb Section Start -->
+<section class="breadcrumb-section pt-0">
+    <div class="container-fluid-lg">
+        <div class="row">
+            <div class="col-12">
+                <div class="breadcrumb-contain">
+                    <h2>About Us</h2>
+                    <nav>
+                        <ol class="breadcrumb mb-0">
+                            <li class="breadcrumb-item">
+                                <a href="index.html">
+                                    <i class="fa-solid fa-house"></i>
+                                </a>
+                            </li>
+                            <li class="breadcrumb-item active">About Us</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Breadcrumb Section End -->
+
+<!-- Fresh Vegetable Section Start -->
+<section class="fresh-vegetable-section section-lg-space">
+    <div class="container-fluid-lg">
+        <div class="row gx-xl-5 gy-xl-0 g-3 ratio_148_1">
+            <div class="col-xl-6 col-12">
+                <div class="row g-sm-4 g-2">
+                    <div class="col-6">
+                        <div class="fresh-image-2">
+                            <div>
+                                <img src="assets/images/inner-page/about-us/1.jpg" class="bg-img blur-up lazyload"
+                                    alt="">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-6">
+                        <div class="fresh-image">
+                            <div>
+                                <img src="assets/images/inner-page/about-us/2.jpg" class="bg-img blur-up lazyload"
+                                    alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-6 col-12">
+                <div class="fresh-contain p-center-left">
+                    <div>
+                        <div class="review-title">
+                            <h4>About Us</h4>
+                            <h2>We make Best Quality In Market</h2>
+                        </div>
+
+                        <div class="delivery-list">
+                            <p class="text-content">Wave Packaging was founded upon many years of experience of
+                                operating in the food & drink packaging sector.
+
+                                We leverage our experience to ensure the highest quality of packaging is
+                                seamlessly delivered to your door, at the most competitive prices.
+
+                                At Wave Packaging, we have the utmost confidence in our products and service, that we
+                                offer a no quibble, 30-day money back guarantee.
+
+                                Our objective is to make eco-friendly packaging affordable and accessible to all sizes
+                                of enterprise. We aim to consistently deliver great value, without compromise on product
+                                quality, the environment, or your bottom line.</p>
+
+                            <ul class="delivery-box">
+                                <li>
+                                    <div class="delivery-box">
+                                        <div class="delivery-icon">
+                                            <img src="https://themes.pixelstrap.com/fastkart/assets/svg/3/delivery.svg"
+                                                class="blur-up lazyload" alt="">
+                                        </div>
+
+                                        <div class="delivery-detail">
+                                            <h5 class="text">Delivery for all orders</h5>
+                                        </div>
+                                    </div>
                                 </li>
-                                <li class="breadcrumb-item active">About Us</li>
-                            </ol>
-                        </nav>
+
+                                <li>
+                                    <div class="delivery-box">
+                                        <div class="delivery-icon">
+                                            <img src="https://themes.pixelstrap.com/fastkart/assets/svg/3/leaf.svg"
+                                                class="blur-up lazyload" alt="">
+                                        </div>
+
+                                        <div class="delivery-detail">
+                                            <h5 class="text">Only Best Quality Bags</h5>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="delivery-box">
+                                        <div class="delivery-icon">
+                                            <img src="https://themes.pixelstrap.com/fastkart/assets/svg/3/delivery.svg"
+                                                class="blur-up lazyload" alt="">
+                                        </div>
+
+                                        <div class="delivery-detail">
+                                            <h5 class="text">Free delivery for all orders</h5>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="delivery-box">
+                                        <div class="delivery-icon">
+                                            <img src="https://themes.pixelstrap.com/fastkart/assets/svg/3/leaf.svg"
+                                                class="blur-up lazyload" alt="">
+                                        </div>
+
+                                        <div class="delivery-detail">
+                                            <h5 class="text">Only Premium Quality Bags</h5>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
-    <!-- Breadcrumb Section End -->
+    </div>
+</section>
+<!-- Fresh Vegetable Section End -->
 
-    <!-- Fresh Vegetable Section Start -->
-    <section class="fresh-vegetable-section section-lg-space">
-        <div class="container-fluid-lg">
-            <div class="row gx-xl-5 gy-xl-0 g-3 ratio_148_1">
-                <div class="col-xl-6 col-12">
-                    <div class="row g-sm-4 g-2">
-                        <div class="col-6">
-                            <div class="fresh-image-2">
-                                <div>
-                                    <img src="assets/images/inner-page/about-us/1.jpg"
-                                        class="bg-img blur-up lazyload" alt="">
-                                </div>
+<!-- Client Section Start -->
+<section class="client-section section-lg-space">
+    <div class="container-fluid-lg">
+        <div class="row">
+            <div class="col-12">
+                <div class="about-us-title text-center">
+                    <h4>What We Do</h4>
+                    <h2 class="center">We are Trusted by Clients</h2>
+                </div>
+
+                <div class="slider-3_1 product-wrapper">
+                    <div>
+                        <div class="clint-contain">
+                            <div class="client-icon">
+                                <img src="https://themes.pixelstrap.com/fastkart/assets/svg/3/work.svg"
+                                    class="blur-up lazyload" alt="">
                             </div>
+                            <h2>10</h2>
+                            <h4>Business Years</h4>
+                            <p>A Wave Packaging is a small business that sells coffee, pastries, and other morning
+                                goods. There are many different types of Wave Packagings around the world.</p>
                         </div>
+                    </div>
 
-                        <div class="col-6">
-                            <div class="fresh-image">
-                                <div>
-                                    <img src="assets/images/inner-page/about-us/2.jpg"
-                                        class="bg-img blur-up lazyload" alt="">
-                                </div>
+                    <div>
+                        <div class="clint-contain">
+                            <div class="client-icon">
+                                <img src="https://themes.pixelstrap.com/fastkart/assets/svg/3/buy.svg"
+                                    class="blur-up lazyload" alt="">
                             </div>
+                            <h2>80 K+</h2>
+                            <h4>Products Sales</h4>
+                            <p>Some Wave Packagings have a seating area, while some just have a spot to order and then
+                                go somewhere else to sit down. The Wave Packaging that I am going to.</p>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="clint-contain">
+                            <div class="client-icon">
+                                <img src="https://themes.pixelstrap.com/fastkart/assets/svg/3/user.svg"
+                                    class="blur-up lazyload" alt="">
+                            </div>
+                            <h2>90%</h2>
+                            <h4>Happy Customers</h4>
+                            <p>My goal for this Wave Packaging is to be able to get a coffee and get on with my day.
+                                It's a Thursday morning and I am rushing between meetings.</p>
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Client Section End -->
 
-                <div class="col-xl-6 col-12">
-                    <div class="fresh-contain p-center-left">
-                        <div>
-                            <div class="review-title">
-                                <h4>About Us</h4>
-                                <h2>We make Best Quality In Market</h2>
+<!-- Team Section Start -->
+<section class="team-section section-lg-space">
+    <div class="container-fluid-lg">
+        <div class="about-us-title text-center">
+            <h4 class="text-content">Our Creative Team</h4>
+            <h2 class="center">fastkart team member</h2>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="slider-user product-wrapper">
+                    <div>
+                        <div class="team-box">
+                            <div class="team-image">
+                                <img src="assets/images/inner-page/user/1.jpg" class="img-fluid blur-up lazyload"
+                                    alt="">
                             </div>
 
-                            <div class="delivery-list">
-                                <p class="text-content">Wave Packaging was founded upon many years of experience of operating in the food & drink packaging sector.
-
-We leverage our experience to ensure the highest quality of packaging is
-seamlessly delivered to your door, at the most competitive prices.
-
-At Wave Packaging, we have the utmost confidence in our products and service, that we offer a no quibble, 30-day money back guarantee.
-
-Our objective is to make eco-friendly packaging affordable and accessible to all sizes of enterprise. We aim to consistently deliver great value, without compromise on product quality, the environment, or your bottom line.</p>
-
-                                <ul class="delivery-box">
+                            <div class="team-name">
+                                <h3>Anna Baranov</h3>
+                                <h5>Marketing</h5>
+                                <p>cheeseburger airedale mozzarella the big cheese fondue.</p>
+                                <ul class="team-media">
                                     <li>
-                                        <div class="delivery-box">
-                                            <div class="delivery-icon">
-                                                <img src="https://themes.pixelstrap.com/fastkart/assets/svg/3/delivery.svg" class="blur-up lazyload" alt="">
-                                            </div>
-
-                                            <div class="delivery-detail">
-                                                <h5 class="text">Delivery for all orders</h5>
-                                            </div>
-                                        </div>
+                                        <a href="https://www.facebook.com/" class="fb-bg">
+                                            <i class="fa-brands fa-facebook-f"></i>
+                                        </a>
                                     </li>
 
                                     <li>
-                                        <div class="delivery-box">
-                                            <div class="delivery-icon">
-                                                <img src="https://themes.pixelstrap.com/fastkart/assets/svg/3/leaf.svg" class="blur-up lazyload" alt="">
-                                            </div>
-
-                                            <div class="delivery-detail">
-                                                <h5 class="text">Only Best Quality Bags</h5>
-                                            </div>
-                                        </div>
+                                        <a href="https://in.pinterest.com/" class="pint-bg">
+                                            <i class="fa-brands fa-pinterest-p"></i>
+                                        </a>
                                     </li>
 
                                     <li>
-                                        <div class="delivery-box">
-                                            <div class="delivery-icon">
-                                                <img src="https://themes.pixelstrap.com/fastkart/assets/svg/3/delivery.svg" class="blur-up lazyload" alt="">
-                                            </div>
-
-                                            <div class="delivery-detail">
-                                                <h5 class="text">Free delivery for all orders</h5>
-                                            </div>
-                                        </div>
+                                        <a href="https://twitter.com/" class="twitter-bg">
+                                            <i class="fa-brands fa-twitter"></i>
+                                        </a>
                                     </li>
 
                                     <li>
-                                        <div class="delivery-box">
-                                            <div class="delivery-icon">
-                                                <img src="https://themes.pixelstrap.com/fastkart/assets/svg/3/leaf.svg" class="blur-up lazyload" alt="">
-                                            </div>
+                                        <a href="https://www.instagram.com/" class="insta-bg">
+                                            <i class="fa-brands fa-instagram"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
 
-                                            <div class="delivery-detail">
-                                                <h5 class="text">Only Premium Quality Bags</h5>
-                                            </div>
-                                        </div>
+                    <div>
+                        <div class="team-box">
+                            <div class="team-image">
+                                <img src="assets/images/inner-page/user/2.jpg" class="img-fluid blur-up lazyload"
+                                    alt="">
+                            </div>
+
+                            <div class="team-name">
+                                <h3>Anna Baranov</h3>
+                                <h5>Marketing</h5>
+                                <p>cheese on toast mozzarella bavarian bergkase smelly cheese cheesy feet.</p>
+                                <ul class="team-media">
+                                    <li>
+                                        <a href="https://www.facebook.com/" class="fb-bg">
+                                            <i class="fa-brands fa-facebook-f"></i>
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a href="https://in.pinterest.com/" class="pint-bg">
+                                            <i class="fa-brands fa-pinterest-p"></i>
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a href="https://twitter.com/" class="twitter-bg">
+                                            <i class="fa-brands fa-twitter"></i>
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a href="https://www.instagram.com/" class="insta-bg">
+                                            <i class="fa-brands fa-instagram"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="team-box">
+                            <div class="team-image">
+                                <img src="assets/images/inner-page/user/3.jpg" class="img-fluid blur-up lazyload"
+                                    alt="">
+                            </div>
+
+                            <div class="team-name">
+                                <h3>Anna Baranov</h3>
+                                <h5>Marketing</h5>
+                                <p>camembert de normandie. Bocconcini rubber cheese fromage frais port-salut.</p>
+                                <ul class="team-media">
+                                    <li>
+                                        <a href="https://www.facebook.com/" class="fb-bg">
+                                            <i class="fa-brands fa-facebook-f"></i>
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a href="https://in.pinterest.com/" class="pint-bg">
+                                            <i class="fa-brands fa-pinterest-p"></i>
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a href="https://twitter.com/" class="twitter-bg">
+                                            <i class="fa-brands fa-twitter"></i>
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a href="https://www.instagram.com/" class="insta-bg">
+                                            <i class="fa-brands fa-instagram"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="team-box">
+                            <div class="team-image">
+                                <img src="assets/images/inner-page/user/4.jpg" class="img-fluid blur-up lazyload"
+                                    alt="">
+                            </div>
+
+                            <div class="team-name">
+                                <h3>Anna Baranov</h3>
+                                <h5>Marketing</h5>
+                                <p>Fondue stinking bishop goat. Macaroni cheese croque monsieur cottage cheese.</p>
+                                <ul class="team-media">
+                                    <li>
+                                        <a href="https://www.facebook.com/" class="fb-bg">
+                                            <i class="fa-brands fa-facebook-f"></i>
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a href="https://in.pinterest.com/" class="pint-bg">
+                                            <i class="fa-brands fa-pinterest-p"></i>
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a href="https://twitter.com/" class="twitter-bg">
+                                            <i class="fa-brands fa-twitter"></i>
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a href="https://www.instagram.com/" class="insta-bg">
+                                            <i class="fa-brands fa-instagram"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="team-box">
+                            <div class="team-image">
+                                <img src="assets/images/inner-page/user/1.jpg" class="img-fluid blur-up lazyload"
+                                    alt="">
+                            </div>
+
+                            <div class="team-name">
+                                <h3>Anna Baranov</h3>
+                                <h5>Marketing</h5>
+                                <p>squirty cheese cheddar macaroni cheese airedale cheese triangles.</p>
+                                <ul class="team-media">
+                                    <li>
+                                        <a href="https://www.facebook.com/" class="fb-bg">
+                                            <i class="fa-brands fa-facebook-f"></i>
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a href="https://in.pinterest.com/" class="pint-bg">
+                                            <i class="fa-brands fa-pinterest-p"></i>
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a href="https://twitter.com/" class="twitter-bg">
+                                            <i class="fa-brands fa-twitter"></i>
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a href="https://www.instagram.com/" class="insta-bg">
+                                            <i class="fa-brands fa-instagram"></i>
+                                        </a>
                                     </li>
                                 </ul>
                             </div>
@@ -124,280 +403,12 @@ Our objective is to make eco-friendly packaging affordable and accessible to all
                 </div>
             </div>
         </div>
-    </section>
-    <!-- Fresh Vegetable Section End -->
+    </div>
+</section>
+<!-- Team Section End -->
 
-    <!-- Client Section Start -->
-    <section class="client-section section-lg-space">
-        <div class="container-fluid-lg">
-            <div class="row">
-                <div class="col-12">
-                    <div class="about-us-title text-center">
-                        <h4>What We Do</h4>
-                        <h2 class="center">We are Trusted by Clients</h2>
-                    </div>
-
-                    <div class="slider-3_1 product-wrapper">
-                        <div>
-                            <div class="clint-contain">
-                                <div class="client-icon">
-                                    <img src="https://themes.pixelstrap.com/fastkart/assets/svg/3/work.svg" class="blur-up lazyload" alt="">
-                                </div>
-                                <h2>10</h2>
-                                <h4>Business Years</h4>
-                                <p>A Wave Packaging is a small business that sells coffee, pastries, and other morning
-                                    goods. There are many different types of Wave Packagings around the world.</p>
-                            </div>
-                        </div>
-
-                        <div>
-                            <div class="clint-contain">
-                                <div class="client-icon">
-                                    <img src="https://themes.pixelstrap.com/fastkart/assets/svg/3/buy.svg" class="blur-up lazyload" alt="">
-                                </div>
-                                <h2>80 K+</h2>
-                                <h4>Products Sales</h4>
-                                <p>Some Wave Packagings have a seating area, while some just have a spot to order and then
-                                    go somewhere else to sit down. The Wave Packaging that I am going to.</p>
-                            </div>
-                        </div>
-
-                        <div>
-                            <div class="clint-contain">
-                                <div class="client-icon">
-                                    <img src="https://themes.pixelstrap.com/fastkart/assets/svg/3/user.svg" class="blur-up lazyload" alt="">
-                                </div>
-                                <h2>90%</h2>
-                                <h4>Happy Customers</h4>
-                                <p>My goal for this Wave Packaging is to be able to get a coffee and get on with my day.
-                                    It's a Thursday morning and I am rushing between meetings.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Client Section End -->
-
-    <!-- Team Section Start -->
-    <section class="team-section section-lg-space">
-        <div class="container-fluid-lg">
-            <div class="about-us-title text-center">
-                <h4 class="text-content">Our Creative Team</h4>
-                <h2 class="center">fastkart team member</h2>
-            </div>
-            <div class="row">
-                <div class="col-12">
-                    <div class="slider-user product-wrapper">
-                        <div>
-                            <div class="team-box">
-                                <div class="team-image">
-                                    <img src="assets/images/inner-page/user/1.jpg" class="img-fluid blur-up lazyload"
-                                        alt="">
-                                </div>
-
-                                <div class="team-name">
-                                    <h3>Anna Baranov</h3>
-                                    <h5>Marketing</h5>
-                                    <p>cheeseburger airedale mozzarella the big cheese fondue.</p>
-                                    <ul class="team-media">
-                                        <li>
-                                            <a href="https://www.facebook.com/" class="fb-bg">
-                                                <i class="fa-brands fa-facebook-f"></i>
-                                            </a>
-                                        </li>
-
-                                        <li>
-                                            <a href="https://in.pinterest.com/" class="pint-bg">
-                                                <i class="fa-brands fa-pinterest-p"></i>
-                                            </a>
-                                        </li>
-
-                                        <li>
-                                            <a href="https://twitter.com/" class="twitter-bg">
-                                                <i class="fa-brands fa-twitter"></i>
-                                            </a>
-                                        </li>
-
-                                        <li>
-                                            <a href="https://www.instagram.com/" class="insta-bg">
-                                                <i class="fa-brands fa-instagram"></i>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div>
-                            <div class="team-box">
-                                <div class="team-image">
-                                    <img src="assets/images/inner-page/user/2.jpg" class="img-fluid blur-up lazyload"
-                                        alt="">
-                                </div>
-
-                                <div class="team-name">
-                                    <h3>Anna Baranov</h3>
-                                    <h5>Marketing</h5>
-                                    <p>cheese on toast mozzarella bavarian bergkase smelly cheese cheesy feet.</p>
-                                    <ul class="team-media">
-                                        <li>
-                                            <a href="https://www.facebook.com/" class="fb-bg">
-                                                <i class="fa-brands fa-facebook-f"></i>
-                                            </a>
-                                        </li>
-
-                                        <li>
-                                            <a href="https://in.pinterest.com/" class="pint-bg">
-                                                <i class="fa-brands fa-pinterest-p"></i>
-                                            </a>
-                                        </li>
-
-                                        <li>
-                                            <a href="https://twitter.com/" class="twitter-bg">
-                                                <i class="fa-brands fa-twitter"></i>
-                                            </a>
-                                        </li>
-
-                                        <li>
-                                            <a href="https://www.instagram.com/" class="insta-bg">
-                                                <i class="fa-brands fa-instagram"></i>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div>
-                            <div class="team-box">
-                                <div class="team-image">
-                                    <img src="assets/images/inner-page/user/3.jpg" class="img-fluid blur-up lazyload"
-                                        alt="">
-                                </div>
-
-                                <div class="team-name">
-                                    <h3>Anna Baranov</h3>
-                                    <h5>Marketing</h5>
-                                    <p>camembert de normandie. Bocconcini rubber cheese fromage frais port-salut.</p>
-                                    <ul class="team-media">
-                                        <li>
-                                            <a href="https://www.facebook.com/" class="fb-bg">
-                                                <i class="fa-brands fa-facebook-f"></i>
-                                            </a>
-                                        </li>
-
-                                        <li>
-                                            <a href="https://in.pinterest.com/" class="pint-bg">
-                                                <i class="fa-brands fa-pinterest-p"></i>
-                                            </a>
-                                        </li>
-
-                                        <li>
-                                            <a href="https://twitter.com/" class="twitter-bg">
-                                                <i class="fa-brands fa-twitter"></i>
-                                            </a>
-                                        </li>
-
-                                        <li>
-                                            <a href="https://www.instagram.com/" class="insta-bg">
-                                                <i class="fa-brands fa-instagram"></i>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div>
-                            <div class="team-box">
-                                <div class="team-image">
-                                    <img src="assets/images/inner-page/user/4.jpg" class="img-fluid blur-up lazyload"
-                                        alt="">
-                                </div>
-
-                                <div class="team-name">
-                                    <h3>Anna Baranov</h3>
-                                    <h5>Marketing</h5>
-                                    <p>Fondue stinking bishop goat. Macaroni cheese croque monsieur cottage cheese.</p>
-                                    <ul class="team-media">
-                                        <li>
-                                            <a href="https://www.facebook.com/" class="fb-bg">
-                                                <i class="fa-brands fa-facebook-f"></i>
-                                            </a>
-                                        </li>
-
-                                        <li>
-                                            <a href="https://in.pinterest.com/" class="pint-bg">
-                                                <i class="fa-brands fa-pinterest-p"></i>
-                                            </a>
-                                        </li>
-
-                                        <li>
-                                            <a href="https://twitter.com/" class="twitter-bg">
-                                                <i class="fa-brands fa-twitter"></i>
-                                            </a>
-                                        </li>
-
-                                        <li>
-                                            <a href="https://www.instagram.com/" class="insta-bg">
-                                                <i class="fa-brands fa-instagram"></i>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div>
-                            <div class="team-box">
-                                <div class="team-image">
-                                    <img src="assets/images/inner-page/user/1.jpg" class="img-fluid blur-up lazyload"
-                                        alt="">
-                                </div>
-
-                                <div class="team-name">
-                                    <h3>Anna Baranov</h3>
-                                    <h5>Marketing</h5>
-                                    <p>squirty cheese cheddar macaroni cheese airedale cheese triangles.</p>
-                                    <ul class="team-media">
-                                        <li>
-                                            <a href="https://www.facebook.com/" class="fb-bg">
-                                                <i class="fa-brands fa-facebook-f"></i>
-                                            </a>
-                                        </li>
-
-                                        <li>
-                                            <a href="https://in.pinterest.com/" class="pint-bg">
-                                                <i class="fa-brands fa-pinterest-p"></i>
-                                            </a>
-                                        </li>
-
-                                        <li>
-                                            <a href="https://twitter.com/" class="twitter-bg">
-                                                <i class="fa-brands fa-twitter"></i>
-                                            </a>
-                                        </li>
-
-                                        <li>
-                                            <a href="https://www.instagram.com/" class="insta-bg">
-                                                <i class="fa-brands fa-instagram"></i>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Team Section End -->
-
-    <!-- Review Section Start -->
-    <!-- <section class="review-section section-lg-space">
+<!-- Review Section Start -->
+<!-- <section class="review-section section-lg-space">
         <div class="container-fluid">
             <div class="about-us-title text-center">
                 <h4 class="text-content">Latest Testimonials</h4>
@@ -748,10 +759,10 @@ Our objective is to make eco-friendly packaging affordable and accessible to all
             </div>
         </div>
     </section> -->
-    <!-- Review Section End -->
+<!-- Review Section End -->
 
-    <!-- Blog Section Start -->
-    <!-- <section class="section-lg-space">
+<!-- Blog Section Start -->
+<!-- <section class="section-lg-space">
         <div class="container-fluid-lg">
             <div class="about-us-title text-center">
                 <h4 class="text-content">Our Blog</h4>
@@ -852,6 +863,6 @@ Our objective is to make eco-friendly packaging affordable and accessible to all
             </div>
         </div>
     </section> -->
-    <!-- Blog Section End -->
+<!-- Blog Section End -->
 
-    <?php include 'footer.php';?> 
+<?php include 'footer.php'; ?>

@@ -14,12 +14,11 @@ echo "__AJAX-";
   
 	if($url_id=="")
 	{
-        $rate=givedata($conn,"products","key_",$product_key,"retail_rate");
+        $rate=givedata($conn,"products","key_",$product_key,"price");
       
         $total=$rate*$qty;
 		$sql="INSERT INTO cart_master(product_key,login_key,qty,rate,total,flag) VALUES('$product_key','$login_key','$qty','$rate','$total','1')";
-      //echo ''.$sql;
-		if($conn->query($sql))
+      	if($conn->query($sql))
 		{
             echo "Done"; 
 		}

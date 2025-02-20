@@ -270,7 +270,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
                                             <div class="product-box-3 theme-bg-white h-100">
                                                 <div class="product-header">
                                                     <div class="product-image">
-                                                        <a href="product-left-thumbnail.html">
+                                                        <a href="../Product-List/details.php?i=<?=$pid?>">
                                                             <img src="../ADMIN//<?=givedata($conn,"products","key_",$pid,"filepath")?>"
                                                                 class="img-fluid blur-up lazyload" alt="">
                                                         </a>
@@ -286,7 +286,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
                                                 <div class="product-footer">
                                                     <div class="product-detail">
                                                         <span class="span-name"><?=givedata($conn,"category","id",$cid,"category_title")?></span>
-                                                        <a href="product-left-thumbnail.html">
+                                                        <a href="../Product-List/details.php?i=<?=$pid?>">
                                                             <h5 class="name"><?=givedata($conn,"products","key_",$pid,"product_title")?></h5>
                                                         </a>
                                                       

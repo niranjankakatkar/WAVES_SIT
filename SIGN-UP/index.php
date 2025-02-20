@@ -84,7 +84,7 @@
                 <li class="nav-item" role="presentation">
                    
                     <button class="nav-link active" onclick="openPage('Home', this, 'white')" id="featured-tab" data-bs-toggle="tab" data-bs-target="#featured" type="button" role="tab" aria-controls="featured" aria-selected="true" style="font-size: 20px; font-weight:bold; color: #062d6a;">For
-                    Retariler</button>
+                    Retailer</button>
                 </li>
                 <li class="nav-item" role="presentation">
 
@@ -357,7 +357,7 @@
 
                                 <div class="col-xxl-12 col-lg-12 col-sm-6">
                                         <div class="custom-form ">
-                                            <label for="que_ans">Specific details for above question <span style="color:red"><b>*</b></span></label>
+                                            <label for="que_ans">Specific details for above question <span style="color:red"></span></label>
                                             <div class="custom-input ">
                                                 <input type="text" class="form-control" id="que_ans"
                                                     name="que_ans" placeholder="Specific details for above question">
@@ -388,20 +388,20 @@
 
                                 <div class="col-xxl-12 col-lg-12 col-sm-6">
                                         <div class="custom-form">
-                                            <label for="city">City <span style="color:red"><b>*</b></span></label>
+                                            <label for="city_1">City <span style="color:red"><b>*</b></span></label>
                                             <div class="custom-input">
-                                                <input type="text" class="form-control" id="city"
-                                                    name="city" placeholder="City ">
+                                                <input type="text" class="form-control" id="city_1"
+                                                    name="city_1" placeholder="City ">
                                             </div>
                                         </div>
                                 </div>
 
                                 <div class="col-xxl-12 col-lg-12 col-sm-6">
                                         <div class="custom-form">
-                                            <label for="post_code">Post Code <span style="color:red"><b>*</b></span></label>
+                                            <label for="post_code_1">Post Code <span style="color:red"><b>*</b></span></label>
                                             <div class="custom-input">
-                                                <input type="text" class="form-control" id="post_code"
-                                                    name="post_code" placeholder="Post Code ">
+                                                <input type="text" class="form-control" id="post_code_1"
+                                                    name="post_code_1" placeholder="Post Code ">
                                             </div>
                                         </div>
                                 </div>
@@ -759,8 +759,8 @@ if (document.getElementById("terms_condi1").checked == false) {
     var year_established = document.getElementById("year_established").value;
 
     var address_1 = document.getElementById("address_1").value;
-    var city = document.getElementById("city").value;
-    var post_code = document.getElementById("post_code").value;
+    var city = document.getElementById("city_1").value;
+    var post_code = document.getElementById("post_code_1").value;
     var nation = document.getElementById("nation").value;
     var user_type = document.getElementById("user_type").value;
 
@@ -798,6 +798,7 @@ if (document.getElementById("terms_condi1").checked == false) {
 
   
     if (company_name == "") {
+       
         $("#company_name").focus();
         error = "Please enter company name";
         $("#company_name").val('');
@@ -806,6 +807,7 @@ if (document.getElementById("terms_condi1").checked == false) {
         return false;
     }
     else if (business_type == "") {
+       
         $("#business_type").focus();
         error = "Please select business type";
         $("#business_type").val('');
@@ -814,6 +816,7 @@ if (document.getElementById("terms_condi1").checked == false) {
         return false;
     }
     else if (product_sell == "") {
+       
         $("#product_sell").focus();
         error = "Please enter product sell";
         $("#product_sell").val('');
@@ -822,6 +825,7 @@ if (document.getElementById("terms_condi1").checked == false) {
         return false;
     }
     else if (year_established == "") {
+       
         $("#year_established").focus();
         error = "Please enter product sell";
         $("#year_established").val('');
@@ -830,6 +834,7 @@ if (document.getElementById("terms_condi1").checked == false) {
         return false;
     }
     else if (address_1 == "") {
+       
         $("#address_1").focus();
         error = "Please enter Address";
         $("#address_1").val('');
@@ -839,6 +844,7 @@ if (document.getElementById("terms_condi1").checked == false) {
     }
     
     else if (city == "") {
+       
         $("#city").focus();
         error = "Please enter City";
         $("#city").val('');
@@ -847,6 +853,7 @@ if (document.getElementById("terms_condi1").checked == false) {
         return false;
     }
     else if (post_code == "") {
+       
         $("#post_code").focus();
         error = "Please enter Post Code";
         $("#post_code").val('');
@@ -856,6 +863,7 @@ if (document.getElementById("terms_condi1").checked == false) {
     }
     
     else if (nation == "") {
+        
         $("#nation").focus();
         error = "Please enter Nation";
         $("#nation").val('');
@@ -864,6 +872,7 @@ if (document.getElementById("terms_condi1").checked == false) {
         return false;
     }
     else if (full_name == "") {
+       
         $("#full_name1").focus();
         error = "Please enter full name";
         $("#full_name1").val('');
@@ -871,7 +880,8 @@ if (document.getElementById("terms_condi1").checked == false) {
         $("#full_name1").attr("placeholder", error);
         return false;
     }
-    else  if (email === "" || !filter.test(email)) {
+    else  if (email == "" || !filter.test(email)) {
+       
         $("#email1").val('');
         error = "Please enter the email";
         $("#email1").focus();
@@ -880,6 +890,7 @@ if (document.getElementById("terms_condi1").checked == false) {
         return false;
     }
     else if (mobile_no == "" || mobile_no.length != 10 || isNaN(mobile_no)) {
+       
         $("#mobile_no1").val('');
         error = "Please enter the Phone";
         $("#mobile_no1").focus();
@@ -888,6 +899,7 @@ if (document.getElementById("terms_condi1").checked == false) {
         return false;
     }
     else if (vat_number == "") {
+       
         $("#vat_number1").focus();
         error = "Please enter Vat Number";
         $("#vat_number1").val('');
@@ -895,7 +907,8 @@ if (document.getElementById("terms_condi1").checked == false) {
         $("#vat_number1").attr("placeholder", error);
         return false;
     }
-    else if (password === "") {
+    else if (password == "") {
+       
         $("#password1").focus();
         error = "Please enter password";
         $("#password1").val('');
@@ -903,16 +916,17 @@ if (document.getElementById("terms_condi1").checked == false) {
         $("#password1").attr("placeholder", error);
         return false;
     }
-    else if (user_type === "") {
+    else if (user_type == "") {
+        
         $("#user_type").focus();
         error = "Please select User Option";
         $("#user_type").val('');
         $("#user_type").addClass('bordererror');
         $("#user_type").attr("placeholder", error);
         return false;
-    }else{
+    }
     return true;
-}
+    
 }
 }
 
@@ -960,9 +974,10 @@ if (document.getElementById("terms_condi1").checked == false) {
     $(document).ready(function () {
         $("#submitButton1").click(function (event) {
             event.preventDefault(); // Prevent default form submission
-
+          
             if (!validation1()) {
                 return; // Stop submission if validation fails
+                
             }
            let form = $("#formId_");
             let url = "signup_form_.php";

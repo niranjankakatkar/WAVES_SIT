@@ -123,7 +123,7 @@ while ($row = mysqli_fetch_assoc($result)) {
                                 onmouseout="this.style.backgroundColor='#fff'; this.style.transform='scale(1)';"
                                 onmousedown="this.style.transform='scale(0.95)';"
                                 onmouseup="this.style.transform='scale(1.05)';">
-                                Wholesaler Sign-Up
+                                Trade Signup
                             </button>
                         </a>
                     </div>
@@ -263,7 +263,7 @@ while ($row = mysqli_fetch_assoc($result)) {
                                                     
                                                 </div>
                                                 <div class="button-group">
-                                                    <a href="CHECKOUT/" class="btn btn-sm cart-button theme-bg-color text-white">Checkout</a>
+                                                  
                                                     <a href="CART/" class="btn btn-sm cart-button">View Cart</a>
                                                 </div>
                                             </div>

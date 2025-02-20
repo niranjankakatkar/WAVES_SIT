@@ -446,7 +446,43 @@ function showMessage(messageText) {
          pincode=document.getElementById('temp_pincode').value;
       
          full_name=document.getElementById('temp_full_name').value;
-         flag=1;
+
+         if (email == "") {
+            $("#temp_email").focus();
+            error = "Please enter email";
+            $("#temp_email").addClass('bordererror');
+             $("#temp_email").attr("placeholder", error);
+            flag=0;
+         }else  if (address == "") {
+            $("#temp_full_address").focus();
+            error = "Please enter Address";
+            $("#temp_full_address").addClass('bordererror');
+            $("#temp_full_address").attr("placeholder", error);
+            flag=0;
+         }else  if (city == "") {
+            $("#temp_city").focus();
+            error = "Please enter City";
+            $("#temp_city").addClass('bordererror');
+            $("#temp_city").attr("placeholder", error);
+            flag=0;
+         }else  if (pincode == "") {
+            $("#temp_pincode").focus();
+            error = "Please enter Pincode";
+            $("#temp_pincode").addClass('bordererror');
+            $("#temp_pincode").attr("placeholder", error);
+            flag=0;
+         }else  if (full_name == "") {
+            $("#temp_full_name").focus();
+            error = "Please enter Full Name";
+            $("#temp_full_name").addClass('bordererror');
+            $("#temp_full_name").attr("placeholder", error);
+            flag=0;
+         }else{
+            flag=1;
+         }
+         
+
+         
          
        
         

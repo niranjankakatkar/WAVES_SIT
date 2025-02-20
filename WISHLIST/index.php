@@ -59,6 +59,7 @@ function shorten($string, $maxLength) {
                     $result = mysqli_query($conn, $sql);
                     while ($row = mysqli_fetch_assoc($result)) {
 
+                        $pid=$row['product_key'];
                         $img=givedata($conn,"products","key_",$row['product_key'],"filepath");
                         $cat_id=givedata($conn,"products","key_",$row['product_key'],"category_id");
                         if($img==""){
@@ -72,7 +73,7 @@ function shorten($string, $maxLength) {
                     <div class="product-box-3 h-100">
                         <div class="product-header">
                             <div class="product-image">
-                                <a href="product-left-thumbnail.html">
+                                <a href="../Product-List/details.php?i=<?=$pid?>">
                                     <img src="<?=$img?>" class="img-fluid blur-up lazyload"
                                         alt="">
                                 </a>
@@ -88,7 +89,7 @@ function shorten($string, $maxLength) {
                         <div class="product-footer">
                             <div class="product-detail">
                                 <span class="span-name"><?=givedata($conn,"category","id",$cat_id,"category_title");?></span>
-                                <a href="product-left-thumbnail.html">
+                                <a href="../Product-List/details.php?i=<?=$pid?>">
                                     <h5 class="name"><?php
                                     
                                     $pname= givedata($conn,"products","key_",$row['product_key'],"product_title");

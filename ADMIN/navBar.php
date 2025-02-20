@@ -240,6 +240,14 @@ if($_SESSION['loginID']=="")
                             <hr>
                         </li>
 
+                        <li>
+                            <a class="sidenav-item-link" href="../DOWNLOAD">
+                                <i class="mdi mdi-cloud-download"></i>
+                                <span class="nav-text">Download</span>
+                            </a>
+                            <hr>
+                        </li>
+
                       
                     </ul>
                 </div>
