@@ -28,13 +28,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		$order_id=givedata($conn,"order_master","id",$oid,"order_id");
 		
 		$sql = "UPDATE order_master set admin_flag='1',expected_date='$delevery_date'  where id='$oid'";
+		echo ''.$sql;
 		if ($conn->query($sql)) {}
 
 		$sql_="INSERT INTO order_track_master(order_id,order_status,remark)	 VALUES('$order_id','Accept','$respocse')";
 			if($conn->query($sql_))
 			{}
 	}else{
-		$oid = $_POST['order_id'];
+		$oid = $_POST['order_id1'];
 		$respocse = $_POST['respocse'];
 
 		$order_id=givedata($conn,"order_master","id",$oid,"order_id");
@@ -200,7 +201,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 									<div class="modal-body px-4">
 										
-										<input type="hidden" name="order_id" id="order_id" value="">
+										<input type="hidden" name="order_id1" id="order_id1" value="">
 
 										<div class="row mb-2">
 											<div class="col-lg-12">
@@ -269,7 +270,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 									<div class="modal-body px-4">
 										
 										<input type="hidden" name="order_id" id="order_id" value="">
-										<input type="hidden" name="flag_" id="flag_" value="1">
+										<input type="text" name="flag_" id="flag_" value="1">
 
 										<div class="row mb-2">
 											<div class="col-lg-12">

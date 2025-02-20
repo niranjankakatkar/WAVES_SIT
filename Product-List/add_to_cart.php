@@ -14,7 +14,7 @@ echo "__AJAX-";
   
 	if($url_id=="")
 	{
-        $rate=givedata($conn,"products","key_",$product_key,"price");
+        $rate=givedata($conn,"products","key_",$product_key,"retail_rate");
       
         $total=$rate*$qty;
 		$sql="INSERT INTO cart_master(product_key,login_key,qty,rate,total,flag) VALUES('$product_key','$login_key','$qty','$rate','$total','1')";

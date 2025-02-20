@@ -97,7 +97,7 @@ if(!empty($_GET['checkout_session_id'])){
                         } 
 
                         
-                        $sql_="update order_master set status='done',tran_id='$transactionID',stripe_checkout_session_id='$checkout_session_id' where order_id='$oid'";
+                        $sql_="update order_master set status='done',admin_flag='0',tran_id='$transactionID',stripe_checkout_session_id='$checkout_session_id' where order_id='$oid'";
                         if($conn->query($sql_))
                         {}
                     } 

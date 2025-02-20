@@ -18,34 +18,20 @@ if ($Dflag != "") {
 }
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-	$flag_ = $_POST['flag_'];
-	if($flag_==1)
-	{
-		$oid = $_POST['order_id'];
-		$delevery_date = $_POST['delevery_date'];
-		$respocse = $_POST['respocse'];
+	$checkbox_order = $_POST['checkbox_order'];
 
-		$order_id=givedata($conn,"order_master","id",$oid,"order_id");
+	foreach ($checkbox_order as $color){ 
 		
-		$sql = "UPDATE order_master set admin_flag='1',expected_date='$delevery_date'  where id='$oid'";
+
+		$sql = "UPDATE order_master set admin_flag='4' where id='$color'";
 		if ($conn->query($sql)) {}
-
-		$sql_="INSERT INTO order_track_master(order_id,order_status,remark)	 VALUES('$order_id','Accept','$respocse')";
-			if($conn->query($sql_))
-			{}
-	}else{
-		$oid = $_POST['order_id'];
-		$respocse = $_POST['respocse'];
-
-		$order_id=givedata($conn,"order_master","id",$oid,"order_id");
-		
-		$sql = "UPDATE order_master set admin_flag='5' where id='$oid'";
-		if ($conn->query($sql)) {}
-
-		$sql_="INSERT INTO order_track_master(order_id,order_status,remark)	 VALUES('$order_id','Cancel','$respocse')";
-			if($conn->query($sql_))
-			{}
 	}
+
+	?>
+	<script>
+		alert("Order Status Updated Successfully");
+	</script>
+	<?php
 
 }
 ?>
@@ -103,16 +89,27 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			<div class="ec-content-wrapper">
 				<div class="content">
 					<div class="breadcrumb-wrapper breadcrumb-wrapper-2">
+						<div>
 						<h1>Shiped Orders</h1>
 						<p class="breadcrumbs"><span><a href="../Dashboard">Home</a></span>
 							<span><i class="mdi mdi-chevron-right"></i></span>Orders
 						</p>
+						</div>
+						<div>
+						
+							
+							
+						</div>
 					</div>
+				
 					<div class="row">
+						<form method="POST">
 						<div class="col-12">
 							<div class="card card-default">
 								<div class="card-body">
+								<button type="submit" class="btn btn-success"> Delevered</button><br>
 									<div class="table-responsive">
+									
 										<table id="responsive-data-table" class="table" style="width:100%">
 											<thead>
 												<tr>
@@ -139,7 +136,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 													$join = date_format($timepstamp, "d-M-Y H:i");
 													?>
 												<tr>
-													<td><?=$row['order_id']?></td>
+													<td>
+														
+													<div class="form-check form-check-inline">
+													<input type="checkbox" id="checkbox_order<?=$row['id']?>" name="checkbox_order[]" value="<?=$row['id']?>">
+													<label for="checkbox_order<?=$row['id']?>"><?=$row['order_id']?></label><br> 
+													</div>	
+												  </td>
 													<td><?=givedata($conn,"user_master","token_key",$userKey,"full_name")?><br>
 												<?=givedata($conn,"user_master","token_key",$userKey,"email")?></td>
 												
@@ -181,6 +184,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 								</div>
 							</div>
 						</div>
+						</form>
 					</div>
 				</div> <!-- End Content -->
 			</div> 

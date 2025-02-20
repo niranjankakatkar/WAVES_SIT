@@ -106,7 +106,7 @@ if ($Dflag != "") {
 
 											<tbody>
 											<?php
-												$sql = "SELECT * FROM order_master where admin_flag='3' ORDER BY id DESC";
+												$sql = "SELECT * FROM order_master where admin_flag='2' ORDER BY id DESC";
 												$result = mysqli_query($conn, $sql);
 												while ($row = mysqli_fetch_assoc($result)) {
 													$timepstamp = $row['timestamp'];

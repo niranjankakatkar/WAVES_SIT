@@ -154,9 +154,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 															?>
 															<span class="mb-2 mr-2 badge badge-warning">Ready To Ship</span>
 															<?php
-														}else if($row['admin_flag']=='3'){
+														}else if($row['admin_flag']=='4'){
 															?>
-															<span class="mb-2 mr-2 badge badge-info">On The Way</span>
+															<span class="mb-2 mr-2 badge badge-success">Delevered</span>
 															<?php
 														}else{
 															?>

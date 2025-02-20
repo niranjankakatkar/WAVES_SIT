@@ -1,18 +1,37 @@
 <?php
-
 include '../../niru_collection.php';
 
+
+
+
+$coupon_id = $_GET['id'];
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+	$product_key = $_POST['product_key'];
+	$avl_qty = $_POST['avl_qty'];
+	$add_qty = $_POST['add_qty'];
+	$updated_qty = $_POST['updated_qty'];
+	$note = $_POST['note'];
+	
+	$sql="INSERT INTO stock_log(p_id,opening_qty,addted_qty,closing_qty,note) VALUES('$product_key','$avl_qty','$add_qty','$updated_qty','$note')";
+	if($conn->query($sql))
+	{
+		$sql = "UPDATE stock_master set avl_qty='$updated_qty' where p_id='$product_key'";
+		if ($conn->query($sql)) {
+			?>
+			<script>alert("Stock Update Successfully");</script>
+			<?php
+		}
+	}
+
+
+}
 ?>
 
 <!DOCTYPE html>
 
 <html lang="en" dir="ltr">
-
-
-
-
-
-<!-- Mirrored from maraviyainfotech.com/projects/ekka/ekka-v37/ekka-admin/product-list.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 17 Dec 2024 08:27:59 GMT -->
 
 <head>
 
@@ -150,9 +169,8 @@ include '../../niru_collection.php';
 
 													<th>Sub Caregory</th>
 
-													<th>Price</th>
 
-													<th>Avl Qty</th>
+													<th>Opening Quantity</th>
 
 													<th>Status</th>
 
@@ -175,6 +193,8 @@ include '../../niru_collection.php';
 										   $result = mysqli_query($conn, $sql);
 
 										   while($row = mysqli_fetch_assoc($result)) {
+
+											$avl_stock=givedata($conn, "stock_master", "p_id", $row['key_'], "avl_qty");
 										
 
 											$timepstamp=$row['timestamp'];
@@ -212,22 +232,7 @@ include '../../niru_collection.php';
 													<td><?= givedata($conn, "category", "id", $row['category_id'], "category_title"); ?></td>
 
 													<td><?= givedata($conn, "sub_category", "id", $row['sub_category_id'], "sub_category_title"); ?></td>
-
-													<td>Retailer: <?=$row['retail_rate']?><br>
-
-													Wholesaler: <?=$row['wholsell_rate']?><br>
-
-													Hoteling: <?=$row['hoteling_rate']?><br>
-
-													Shop: <?=$row['shop_rate']?><br></td>
-
-													<td><?=$row['retail_qty']?><br>
-
-													<?=$row['wholsell_qty']?><br>
-
-													<?=$row['hoteling_qty']?><br>
-
-													<?=$row['shop_qty']?><br></td>
+													<td><?= givedata($conn, "stock_master", "p_id", $row['key_'], "avl_qty"); ?></td>
 
 													<td><?php
 
@@ -274,12 +279,12 @@ include '../../niru_collection.php';
 
 
 															<div class="dropdown-menu">
-
-																<a class="dropdown-item" href="add.php?id=<?=$row['key_']?>">Edit</a>
-
-																
-
-															</div>
+																	<a class="dropdown-item"
+																		onclick="get_stockdata('<?= $row['key_'] ?>','<?= $row['product_title'] ?>','<?=$avl_stock?>')"
+																		data-bs-toggle="modal"
+																		data-bs-target="#updateStock">Update</a>
+																	
+																</div>
 
 														</div>
 
@@ -306,6 +311,74 @@ include '../../niru_collection.php';
 
 						</div>
 
+					</div>
+
+					<!-- Add Vendor Modal  -->
+					<div class="modal fade modal-add-contact" id="updateStock" tabindex="-1" role="dialog"
+						aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+						<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+							<div class="modal-content">
+								<form method="POST">
+									<div class="modal-header px-4">
+										<h5 class="modal-title" id="exampleModalCenterTitle">Update Stock
+										</h5>
+									</div>
+
+									<div class="modal-body px-4">
+										
+										<input type="hidden" name="product_key" id="product_key" value="">
+
+										<div class="row mb-2">
+
+											<div class="col-lg-12">
+												<div class="form-group">
+													<label for="product_title">Product Title</label>
+													<input name="product_title" id="product_title" class="form-control" readonly />
+													
+												</div>
+											</div>
+
+											<div class="col-lg-4">
+												<div class="form-group">
+													<label for="avl_qty">Opening Quantity</label>
+													<input name="avl_qty" id="avl_qty" class="form-control" readonly/>
+													
+												</div>
+											</div>
+
+											<div class="col-lg-4">
+												<div class="form-group">
+													<label for="full_name">Added Quantity</label>
+													<input name="add_qty"  id="add_qty" onkeyup="calQTY()" class="form-control"  />
+													
+												</div>
+											</div>
+											<div class="col-lg-4">
+												<div class="form-group">
+													<label for="full_name">Closing Quantity</label>
+													<input name="updated_qty" id="updated_qty" class="form-control" readonly />
+													
+												</div>
+											</div>
+											
+											<div class="col-lg-12">
+												<div class="form-group">
+													<label for="full_name">Note</label>
+													<textarea name="note" class="form-control" row="6"></textarea>
+													
+												</div>
+											</div>
+
+										</div>
+
+										<div class="modal-footer px-4">
+											<button type="button" class="btn btn-secondary btn-pill"
+												data-bs-dismiss="modal">Cancel</button>
+											<button type="submit" class="btn btn-primary btn-pill">Update Stock</button>
+										</div>
+								</form>
+							</div>
+						</div>
 					</div>
 
 				</div> <!-- End Content -->
@@ -375,6 +448,29 @@ include '../../niru_collection.php';
 	<!-- Ekka Custom -->
 
 	<script src="../assets/js/ekka.js"></script>
+
+	<script>
+		
+		function get_stockdata(id,title,qty) {
+
+			
+		document.getElementById("product_key").value = id;
+		document.getElementById("product_title").value = title;
+		document.getElementById("avl_qty").value = qty;
+		document.getElementById("updated_qty").value = qty;
+
+
+			}
+			function calQTY() {
+				var avl_qty = document.getElementById("avl_qty").value;
+				var add_qty = document.getElementById("add_qty").value;
+				if(add_qty==""){
+					add_qty=0;
+				}
+				var updated_qty = parseInt(avl_qty) + parseInt(add_qty);
+				document.getElementById("updated_qty").value = updated_qty;
+			}
+	</script>
 
 </body>
 

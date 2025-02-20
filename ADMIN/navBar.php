@@ -140,6 +140,25 @@ if($_SESSION['loginID']=="")
                             </div>
                         </li>
 
+                         <!-- Stock -->
+                         <li class="has-sub">
+                            <a class="sidenav-item-link" href="javascript:void(0)">
+                                <i class="mdi mdi-cart-plus"></i>
+                                <span class="nav-text">Stock</span> <b class="caret"></b>
+                            </a>
+                            <div class="collapse">
+                                <ul class="sub-menu" id="products" data-parent="#sidebar-menu">
+                                    <li class="">
+                                        <a class="sidenav-item-link" href="../STOCK/">
+                                            <span class="nav-text">Update Stock</span>
+                                        </a>
+                                    </li>
+                                   
+                                   
+                                </ul>
+                            </div>
+                        </li>
+
                         <!-- Orders -->
                         <li class="has-sub">
                             <a class="sidenav-item-link" href="javascript:void(0)">

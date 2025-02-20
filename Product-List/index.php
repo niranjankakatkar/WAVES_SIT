@@ -303,7 +303,7 @@ $fl=0;
                                                 echo "".givedata($conn, "sub_category", "key_", $_GET['id_'], "sub_category_title"); 
                                             }?></span>
                                         <a href="details.php?i=<?= $row['key_'] ?>">
-                                            <h5 class="name"><?php
+                                            <h5 class="name" title="<?=$row['product_title']?>"><?php
                                             $pname=$row['product_title'];
                                             $plenght=strlen($pname);
                                            

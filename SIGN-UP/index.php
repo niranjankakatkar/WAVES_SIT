@@ -81,14 +81,10 @@
         <div class="text-center">
             <!-- Tabs Navigation -->
             <ul class="nav nav-tabs d-flex flex-row" id="jobTabs" role="tablist">
-                <li class="nav-item" role="presentation">
-                   
-                    <button class="nav-link active" onclick="openPage('Home', this, 'white')" id="featured-tab" data-bs-toggle="tab" data-bs-target="#featured" type="button" role="tab" aria-controls="featured" aria-selected="true" style="font-size: 20px; font-weight:bold; color: #062d6a;">For
-                    Retailer</button>
-                </li>
+                
                 <li class="nav-item" role="presentation">
 
-                    <button class="nav-link" onclick="openPage('News', this, 'white')" id="fulltime-tab" data-bs-toggle="tab" data-bs-target="#fulltime" type="button" role="tab" aria-controls="fulltime" aria-selected="false" style="font-size: 20px; font-weight:bold; color: #062d6a;">For Wholesaler</button>
+                    <button class="nav-link active" onclick="openPage('News', this, 'white')" id="fulltime-tab" data-bs-toggle="tab" data-bs-target="#fulltime" type="button" role="tab" aria-controls="fulltime" aria-selected="true" style="font-size: 20px; font-weight:bold; color: #062d6a;">For Wholesaler</button>
                 </li>
                
             </ul>
@@ -97,10 +93,10 @@
         <!-- Tabs Content -->
         <div class="tab-content" id="jobTabsContent">
             <!-- Featured Tab -->
-            <div class="tab-pane fade show active" id="featured" role="tabpanel" aria-labelledby="featured-tab">
+            <div class="tab-pane fade " id="featured" role="tabpanel" aria-labelledby="featured-tab">
                 <div class="job-item p-4 mb-4" style="border: 1px solid #ddd; border-radius: 8px;">
                     <div class="row g-4">
-                    <div id="Home" class="tabcontent pt-2 pb-4" style="display:block">
+                    <div id="Home" class="tabcontent pt-2 pb-4" style="display:none">
                       
                         <div class="log-in-title">
                             <h3>Welcome To Waves Packaging</h3>
@@ -257,10 +253,10 @@
             </div>
 
             <!-- Full Time Tab -->
-            <div class="tab-pane fade" id="fulltime" role="tabpanel" aria-labelledby="fulltime-tab">
+            <div class="tab-pane fade show active" id="fulltime" role="tabpanel" aria-labelledby="fulltime-tab">
                 <div class="job-item p-4 mb-4" style="border: 1px solid #ddd; border-radius: 8px;">
                     <div class="row g-4">
-                    <div id="News" class="tabcontent pt-2 pb-4">
+                    <div id="News" class="tabcontent pt-2 pb-4" style="display:block">
                         
                         <div class="input-box pt-4">
                             <form class="row g-4" id="formId_" onsubmit="return validation1();">

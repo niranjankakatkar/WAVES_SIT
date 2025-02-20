@@ -49,8 +49,8 @@ if(!empty($request->createCheckoutSession)){
                 'quantity' => 1 
             ]], 
             'mode' => 'payment', 
-            'success_url' => 'http://wavespackaging.sitsolutions.co.in/PAYMENT/?checkout_session_id={CHECKOUT_SESSION_ID}', 
-            'cancel_url' => 'http://wavespackaging.sitsolutions.co.in/PAYMENT/?flag=1', 
+            'success_url' => 'http://localhost/WAVES_SIT/PAYMENT/?checkout_session_id={CHECKOUT_SESSION_ID}', 
+            'cancel_url' => 'http://localhost/WAVES_SIT/PAYMENT/?flag=1', 
         ]); 
     } catch(Exception $e) {  
         $api_error = $e->getMessage();  

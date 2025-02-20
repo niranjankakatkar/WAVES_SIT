@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     
     </tr>';
     
-    $sql = "SELECT * FROM order_master where admin_flag='3' ORDER BY id DESC";
+    $sql = "SELECT * FROM order_master where admin_flag='2' ORDER BY id DESC";
     $result = mysqli_query($conn, $sql);
                                                 
     //loop the query data to the table in same order as the headers
